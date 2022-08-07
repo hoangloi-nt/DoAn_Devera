@@ -1,0 +1,38 @@
+{
+  "name": "be-project",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "strapi": "3.6.10",
+    "strapi-admin": "3.6.10",
+    "strapi-utils": "3.6.10",
+    "strapi-plugin-content-type-builder": "3.6.10",
+    "strapi-plugin-content-manager": "3.6.10",
+    "strapi-plugin-users-permissions": "3.6.10",
+    "strapi-plugin-email": "3.6.10",
+    "strapi-plugin-upload": "3.6.10",
+    "strapi-plugin-i18n": "3.6.10",
+    "strapi-connector-bookshelf": "3.6.10",
+    "knex": "0.21.18",
+    "pg": "8.5.1"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "3a96fdc7-8a9d-4ca4-927c-440114e6ce9e"
+  },
+  "engines": {
+    "node": ">=10.16.0 <=14.x.x",
+    "npm": "^6.0.0"
+  },
+  "license": "MIT"
+}
