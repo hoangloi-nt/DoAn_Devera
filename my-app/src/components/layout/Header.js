@@ -41,11 +41,11 @@ const Header = () => {
           </li>
         ))}
       </ul>
-      <div className="relative flex items-center ml-5">
+      <div className="relative flex items-center mx-5">
         <input
           type="text"
           placeholder="Search..."
-          className=" py-3 pl-3 pr-10 bg-background rounded-lg border border-white flex-1"
+          className=" py-3 pl-3 pr-10 bg-background rounded-lg border border-white flex-1 w-[300px]"
         />
         <span className="absolute cursor-pointer right-0 p-3">
           <svg
@@ -64,7 +64,9 @@ const Header = () => {
           </svg>
         </span>
       </div>
-      <Button kind="primary">Connect</Button>
+      <Button kind="primary" className="flex-1">
+        Connect
+      </Button>
     </header>
   );
 };

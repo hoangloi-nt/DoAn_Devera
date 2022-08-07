@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
 const ButtonStyles = styled.button`
+  padding: 10px 20px;
   cursor: pointer;
   line-height: 1;
   border-radius: 8px;
   font-weight: 300;
   display: block;
-  min-width: 200px;
-  height: ${(props) => props.height || "56px"};
+  min-width: ${(props) => props.width || "20px"};
+  height: ${(props) => props.height || "46px"};
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   ${(props) =>
     props.kind === "primary" &&
@@ -47,6 +48,7 @@ const ButtonStyles = styled.button`
 `;
 
 const Button = ({
+  className = "",
   children,
   type = "button",
   kind = "primary",
@@ -59,6 +61,7 @@ const Button = ({
     return (
       <NavLink to={to} style={{ display: "inline-block" }}>
         <ButtonStyles
+          className={className}
           type={type}
           active={active}
           kind={kind}
@@ -72,6 +75,7 @@ const Button = ({
   }
   return (
     <ButtonStyles
+      className={className}
       type={type}
       active={active}
       kind={kind}
