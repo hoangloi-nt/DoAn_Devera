@@ -27,3 +27,22 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+.page-num {
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 400;
+  border: 1px solid #6F5CF1;
+  color: #6F5CF1;
+}
+
+.page-num:hover {
+  background-color: #6F5CF1;
+  color: #EBEDFF;
+}
+
+.page-active {
+  background-color: #6F5CF1;
+  color: #EBEDFF;
+}

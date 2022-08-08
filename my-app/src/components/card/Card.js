@@ -1,18 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Card = ({ to }) => {
+const Card = ({ to, tittle, image }) => {
   return (
     <NavLink to={to}>
       <div className="w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all">
         <img
-          src="https://img.freepik.com/free-vector/vector-illustration-mountain-landscape_1441-71.jpg"
+          // src="https://img.freepik.com/free-vector/vector-illustration-mountain-landscape_1441-71.jpg"
+          src={image}
           alt=""
           className="object-cover w-[222px] h-[222px] mx-auto"
         />
         <div className="mt-5 flex justify-between items-center mx-8">
           <div className="leading-none">
             <span className="text-sm">Crazy Apes</span> <br></br>
+            {/* <span className="text-sm">{tittle}</span> <br></br> */}
             <span className="text-xs">
               Created by <strong> hx45...250e</strong>
             </span>

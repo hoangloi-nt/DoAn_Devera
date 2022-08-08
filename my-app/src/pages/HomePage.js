@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../components/button";
 import { Card } from "../components/card";
+import { Pagination } from "../components/pagination";
 
 const HomePage = () => {
+  const [cards, setCards] = useState([]);
+  
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products").then((respone) =>
+      respone.json().then((data) => {
+        setCards(data);
+      })
+    );
+  }, [])
+
   return (
     <div className="container">
       <div className="flex justify-center items-center mt-10">
@@ -58,14 +69,16 @@ const HomePage = () => {
             Music
           </Button>
         </div>
-        <div className="grid grid-cols-3 gap-x-10 gap-y-12 mx-auto">
+        {/* <div className="grid grid-cols-3 gap-x-10 gap-y-12 mx-auto">
           <Card to={"/"}></Card>
           <Card to={"/"}></Card>
           <Card to={"/"}></Card>
           <Card to={"/"}></Card>
           <Card to={"/"}></Card>
           <Card to={"/"}></Card>
-        </div>
+        </div> */}
+
+        <Pagination items = { cards }/>
       </div>
     </div>
   );
