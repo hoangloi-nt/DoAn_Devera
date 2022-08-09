@@ -126,7 +126,7 @@ const Footer = () => {
         <p className="text-sm font-medium text-[#545C71]">Copyright 2022 Devera, All right reserved.</p>
         <div className="flex gap-x-8">
           <p className="text-sm font-medium text-[#545C71]">Privacy Policy</p>
-          <p className="text-sm text-[#545C71]">Terms & Conditions</p>
+          <p className="text-sm font-medium text-[#545C71]">Terms & Conditions</p>
         </div>
       </div>
     </FooterStyled>
