@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { Card } from "../card";
 
-export default function Pagination (props) {
+export default function Pagination(props) {
   const { items } = props;
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 6;
-  
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
