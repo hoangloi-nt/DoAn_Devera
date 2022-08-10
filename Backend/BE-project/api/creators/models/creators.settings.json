@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "creators",
+  "info": {
+    "name": "Creators"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "products": {
+      "collection": "products"
+    }
+  }
+}
