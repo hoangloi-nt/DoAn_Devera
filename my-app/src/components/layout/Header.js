@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "../button";
+import { connectWallet, hashShortener, disConnect } from "../../sdk/iconSDK.js";
 
 const menuLinks = [
   {
@@ -22,6 +23,9 @@ const menuLinks = [
 ];
 
 const Header = () => {
+  const [address, setAddress] = useState(localStorage.getItem("address"));
+  const [dropdown, setDropdown] = useState(false);
+
   return (
     <header className="!py-5 container flex items-center gap-x-10">
       <NavLink to="/">
@@ -64,9 +68,50 @@ const Header = () => {
           </svg>
         </span>
       </div>
-      <Button kind="primary" className="flex-1">
-        Connect
-      </Button>
+      <div>
+        {address ? (
+          <div className="flex justify-center items-center gap-x-3">
+            <div className="avatar w-10 h-10">
+              <img
+                src="https://vcdn-sohoa.vnecdn.net/2022/03/08/bored-ape-nft-accidental-0-728-5490-8163-1646708401.jpg"
+                alt=""
+                className="object-cover w-full h-full rounded-full"
+              />
+            </div>
+            <span
+              className="text-gray-400 cursor-pointer relative"
+              onClick={() => setDropdown(!dropdown)}
+            >
+              {hashShortener(address)}
+              {dropdown && (
+                <div className="absolute flex justify-center items-start flex-col bg-white w-[200px] rounded-lg overflow-hidden translate-y-2">
+                  <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full ">
+                    Change language
+                  </span>
+                  <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full">
+                    Dark mode
+                  </span>
+                  <Button
+                    kind="primary"
+                    className="w-full !rounded-tl-none !rounded-tr-none text-white"
+                    onClick={() => disConnect(setAddress)}
+                  >
+                    Disconnect
+                  </Button>
+                </div>
+              )}
+            </span>
+          </div>
+        ) : (
+          <Button
+            kind="primary"
+            className="w-[200px]"
+            onClick={() => connectWallet(setAddress)}
+          >
+            Connect
+          </Button>
+        )}
+      </div>
     </header>
   );
 };

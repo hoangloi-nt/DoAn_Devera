@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "../components/button";
 import { Card } from "../components/card";
 import { Pagination } from "../components/pagination";
@@ -67,6 +67,7 @@ const HomePage = () => {
           <Card to={"/"}></Card>
           <Card to={"/"}></Card>
         </div>
+        <div className="my-5">{/* <Pagination></Pagination> */}</div>
       </div>
     </div>
   );
