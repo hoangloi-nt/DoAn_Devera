@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "../button";
 import { connectWallet, hashShortener, disConnect } from "../../sdk/iconSDK.js";
+import useClickOutSide from "../../hooks/useClickOutSide";
 
 const menuLinks = [
   {
@@ -24,7 +25,8 @@ const menuLinks = [
 
 const Header = () => {
   const [address, setAddress] = useState(localStorage.getItem("address"));
-  const [dropdown, setDropdown] = useState(false);
+  // const [dropdown, setDropdown] = useState(false);
+  const { show, setShow, nodeRef } = useClickOutSide();
 
   return (
     <header className="!py-5 container flex items-center gap-x-10">
@@ -80,10 +82,11 @@ const Header = () => {
             </div>
             <span
               className="text-gray-400 cursor-pointer relative"
-              onClick={() => setDropdown(!dropdown)}
+              onClick={() => setShow(!show)}
+              ref={nodeRef}
             >
               {hashShortener(address)}
-              {dropdown && (
+              {show && (
                 <div className="absolute flex justify-center items-start flex-col bg-white w-[200px] rounded-lg overflow-hidden translate-y-2">
                   <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full ">
                     Change language
