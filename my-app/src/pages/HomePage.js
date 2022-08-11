@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../components/button";
 import { Card } from "../components/card";
+import { TopCreators } from "../components/creator";
 import { Pagination } from "../components/pagination";
 
 const HomePage = () => {
@@ -68,6 +69,8 @@ const HomePage = () => {
           <Card to={"/"}></Card>
         </div>
       </div>
+
+      <TopCreators />
     </div>
   );
 };

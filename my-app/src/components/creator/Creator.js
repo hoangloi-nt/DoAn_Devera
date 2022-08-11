@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const Creator = ({ to }) => {
     return (
       <NavLink to={to}>
-        <div className="w-[294px] h-[63px] bg-bg_card rounded-[5px] flex items-center px-[9px] justify-between">
+        <div className="w-[294px] h-[63px] bg-bg_card rounded-[5px] flex items-center px-[9px] justify-between hover:-translate-y-1 transition-all">
           <div className="flex flex-row items-center gap-[7px]">
             <img
               src="https://img.freepik.com/free-vector/three-shiba-inu-characters-scene_603843-3529.jpg?w=900&t=st=1660201551~exp=1660202151~hmac=4c6fa00c801eece858778d622159c6ba4c235565e7cd329c0ed414edaec5699f"

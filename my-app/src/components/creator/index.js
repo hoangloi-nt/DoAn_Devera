@@ -1,3 +1,3 @@
-import Creator from './Creator';
+import TopCreators from './TopCreators';
 
-export { Creator };
+export { TopCreators };
