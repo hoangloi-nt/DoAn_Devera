@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "../components/button";
 import { Card } from "../components/card";
+import { TopCreators } from "../components/creator";
 import { Pagination } from "../components/pagination";
 
 const HomePage = () => {
@@ -69,6 +70,8 @@ const HomePage = () => {
         </div>
         <div className="my-5">{/* <Pagination></Pagination> */}</div>
       </div>
+
+      <TopCreators />
     </div>
   );
 };

@@ -6,8 +6,8 @@ const Card = ({ to, tittle, image }) => {
     <NavLink to={to}>
       <div className="w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all">
         <img
-          // src="https://img.freepik.com/free-vector/vector-illustration-mountain-landscape_1441-71.jpg"
-          src={image}
+          src="https://img.freepik.com/free-vector/vector-illustration-mountain-landscape_1441-71.jpg"
+          // src={image}
           alt=""
           className="object-cover w-[222px] h-[222px] mx-auto"
         />
