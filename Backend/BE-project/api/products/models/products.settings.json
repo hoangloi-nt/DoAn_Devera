@@ -32,6 +32,9 @@
     },
     "creators": {
       "model": "creators"
+    },
+    "Category": {
+      "type": "string"
     }
   }
 }
