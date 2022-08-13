@@ -8,6 +8,7 @@ const Container = styled.div`
     flex-direction: column;
     gap: 41px;
     align-items: center;
+    margin-bottom: 100px;
 `
 
 const ListCreator = styled.div`
@@ -16,17 +17,10 @@ const ListCreator = styled.div`
   gap: 30px 11px;
 `;
 
-const HeadingStyle = styled.h1 `
-    font-weight: 500;
-    font-size: 36px;
-    line-height: 46px;
-    text-align: center;
-`
-
 const TopCreators = () => {
     return (
       <Container>
-        <HeadingStyle>Top Creators of the week</HeadingStyle>
+        <h1 className='heading-text'>Top Creators of the week</h1>
         <ListCreator>
           <Creator to={"/"} />
           <Creator to={"/"} />
