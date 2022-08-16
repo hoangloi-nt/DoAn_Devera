@@ -110,7 +110,7 @@ const Footer = () => {
               <div className="flex flex-col items-center justify-center">
                 {menuLink.subMenuLinks.map((subMenuLink) => (
                   <NavLink
-                    key={subMenuLink.title}
+                    key={subMenuLink.subtitle}
                     to={subMenuLink.subUrl}
                     className="mb-1 text-base font-normal"
                   >
