@@ -33,28 +33,38 @@ a {
   cursor: pointer;
   border-radius: 3px;
   font-weight: 400;
-  border: 1px solid #6F5CF1;
-  color: #6F5CF1;
+  border: 1px solid #6f5cf1;
+  color: #6f5cf1;
 }
 
 .page-num:hover {
-  background-color: #6F5CF1;
-  color: #EBEDFF;
+  background-color: #6f5cf1;
+  color: #ebedff;
 }
 
 .page-active {
-  background-color: #6F5CF1;
-  color: #EBEDFF;
+  background-color: #6f5cf1;
+  color: #ebedff;
 }
-.heading-text
-{
+.heading-text {
   font-size: 36px;
-  font-weight: 500 ;
+  font-weight: 500;
   line-height: calc(45.94 / 36);
 }
-.message-text
-{
+.message-text {
   font-size: 16px;
   line-height: calc(20.42 / 16);
   font-weight: 500;
+}
+
+.hidden-input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 }

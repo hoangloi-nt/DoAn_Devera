@@ -94,6 +94,9 @@ const Header = () => {
                   <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full">
                     Dark mode
                   </span>
+                  <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full">
+                    <NavLink to={"/create"}>Create NFT</NavLink>
+                  </span>
                   <Button
                     kind="primary"
                     className="w-full !rounded-tl-none !rounded-tr-none text-white"
