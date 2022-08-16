@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "../button";
-import { connectWallet, hashShortener, disConnect } from "../../sdk/iconSDK.js";
+import {
+  connectWallet,
+  hashShortener,
+  disConnect,
+  getBalance,
+} from "../../sdk/iconSDK.js";
 import useClickOutSide from "../../hooks/useClickOutSide";
 
 const menuLinks = [
@@ -25,8 +30,15 @@ const menuLinks = [
 
 const Header = () => {
   const [address, setAddress] = useState(localStorage.getItem("address"));
-  // const [dropdown, setDropdown] = useState(false);
   const { show, setShow, nodeRef } = useClickOutSide();
+  const [price, setPrice] = useState("");
+
+  async function getPrice() {
+    const price = await getBalance(address);
+    console.log("price: ", price);
+    setPrice(price);
+  }
+  getPrice();
 
   return (
     <header className="!py-5 container flex items-center gap-x-10">
@@ -86,6 +98,7 @@ const Header = () => {
               ref={nodeRef}
             >
               {hashShortener(address)}
+              <p className="text-white font-medium">{price} ICX</p>
               {show && (
                 <div className="absolute flex justify-center items-start flex-col bg-white w-[200px] rounded-lg overflow-hidden translate-y-2">
                   <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full ">

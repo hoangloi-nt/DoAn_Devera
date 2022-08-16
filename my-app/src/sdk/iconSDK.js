@@ -38,13 +38,11 @@ export const convertToICX = (balance) => {
     .toString();
 };
 
-export const getBalance = (address) => {
-  return iconService
+export const getBalance = async (address) => {
+  const balance = await iconService
     .getBalance(address || localStorage.getItem("ADDRESS"))
-    .execute()
-    .then((balance) => {
-      return convertToICX(balance);
-    });
+    .execute();
+  return convertToICX(balance);
 };
 
 export const disConnect = (setAddress) => {
