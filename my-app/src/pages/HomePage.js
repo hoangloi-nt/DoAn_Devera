@@ -37,9 +37,9 @@ const HomePage = () => {
         <img src={require("../img/Devera-logo-red-1.png")} alt="" />
         <img src={require("../img/Lecle-logo-yellow-1.png")} alt="" />
       </div>
-      <div className="flex flex-col justify-center p-10 border-t border-t-zinc-400 border-opacity-20">
-        <div className="my-10 ml-10 text-xl text-left">Super Hot</div>
-        <div className="flex items-center justify-center text-sm gap-x-8">
+      <div className="flex flex-col justify-center border-t border-t-zinc-400 border-opacity-20">
+        <div className="my-10 text-xl text-left">Super Hot</div>
+        <div className="flex items-center justify-center text-sm gap-x-10">
           <Button kind="secondary" height={"34px"}>
             Music
           </Button>
@@ -59,7 +59,9 @@ const HomePage = () => {
             Music
           </Button>
         </div>
-        <div className="grid grid-cols-3 mx-auto gap-x-10 gap-y-12">
+        <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
+          <Card to={"/"}></Card>
+          <Card to={"/"}></Card>
           <Card to={"/"}></Card>
           <Card to={"/"}></Card>
           <Card to={"/"}></Card>
