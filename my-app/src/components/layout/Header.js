@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "../button";
 import {
   connectWallet,
@@ -8,6 +8,7 @@ import {
   getBalance,
 } from "../../sdk/iconSDK.js";
 import useClickOutSide from "../../hooks/useClickOutSide";
+import { useEffect } from "react";
 
 const menuLinks = [
   {
@@ -32,13 +33,16 @@ const Header = () => {
   const [address, setAddress] = useState(localStorage.getItem("address"));
   const { show, setShow, nodeRef } = useClickOutSide();
   const [price, setPrice] = useState("");
+  const navigate = useNavigate();
 
-  async function getPrice() {
-    const price = await getBalance(address);
-    console.log("price: ", price);
-    setPrice(price);
-  }
-  getPrice();
+  useEffect(() => {
+    async function getPrice() {
+      const price = await getBalance(address);
+      setPrice(price);
+    }
+    getPrice();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <header className="!py-5 container flex items-center gap-x-10">
@@ -113,7 +117,10 @@ const Header = () => {
                   <Button
                     kind="primary"
                     className="w-full !rounded-tl-none !rounded-tr-none text-white"
-                    onClick={() => disConnect(setAddress)}
+                    onClick={() => {
+                      disConnect(setAddress);
+                      navigate("/");
+                    }}
                   >
                     Disconnect
                   </Button>
