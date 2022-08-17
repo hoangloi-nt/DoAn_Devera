@@ -10,6 +10,15 @@
     },
     {
       "method": "GET",
+      "path": "/search/products",
+      "handler": "products.findByName",
+      "config": {
+        "policies": []
+      }
+    },
+    
+    {
+      "method": "GET",
       "path": "/products/count",
       "handler": "products.count",
       "config": {

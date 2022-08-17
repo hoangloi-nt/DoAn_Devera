@@ -19,6 +19,8 @@ const DEFAULT_PERMISSIONS = [
   { action: 'find', controller: 'products', type: null, roleType: null },
   { action: 'count', controller: 'products', type: null, roleType: 'public' },
   { action: 'count', controller: 'creators', type: null, roleType: 'public' },
+  { action: 'findbyname', controller: 'products', type: null, roleType: 'public' },
+
 ];
 
 module.exports = { DEFAULT_PERMISSIONS };
