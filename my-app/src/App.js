@@ -1,3 +1,4 @@
+import { AuthProvider } from "components/contexts/auth-context";
 import React, { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 import Main from "./components/layout/Main";
@@ -9,14 +10,16 @@ import SellPage from "./pages/SellPage";
 const App = () => {
   return (
     <Fragment>
-      <Routes>
-        <Route element={<Main></Main>}>
-          <Route path="/" element={<HomePage></HomePage>}></Route>
-          <Route path="/create" element={<CreatePage></CreatePage>}></Route>
-          <Route path="/buy/:nftId" element={<BuyPage></BuyPage>}></Route>
-          <Route path="/sell" element={<SellPage></SellPage>}></Route>
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route element={<Main></Main>}>
+            <Route path="/" element={<HomePage></HomePage>}></Route>
+            <Route path="/create" element={<CreatePage></CreatePage>}></Route>
+            <Route path="/buy/:nftId" element={<BuyPage></BuyPage>}></Route>
+            <Route path="/sell" element={<SellPage></SellPage>}></Route>
+          </Route>
+        </Routes>
+      </AuthProvider>
     </Fragment>
   );
 };
