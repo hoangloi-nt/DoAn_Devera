@@ -1,3 +1,4 @@
+import Marketplace from "pages/Marketplace/Marketplace";
 import React, { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 import Main from "./components/layout/Main";
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route element={<Main></Main>}>
           <Route path="/" element={<HomePage></HomePage>}></Route>
+          <Route path="/marketplace" element={<Marketplace></Marketplace>}></Route>
           <Route path="/create" element={<CreatePage></CreatePage>}></Route>
           <Route path="/buy/:nftId" element={<BuyPage></BuyPage>}></Route>
           <Route path="/sell" element={<SellPage></SellPage>}></Route>

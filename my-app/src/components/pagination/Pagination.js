@@ -7,7 +7,7 @@ export default function Pagination(props) {
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -22,14 +22,17 @@ export default function Pagination(props) {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-x-10 gap-y-12 mx-auto">
-        {currentItems.map((card) => {
+      <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
+        {currentItems.map((product) => {
           return (
-            // <div>
-            //   <img src={card.image} alt={card.title} />
-            // </div>
-
-            <Card to={"/"} image={card.image}></Card>
+            <Card
+              to={"/"}
+              tittle={product.Name}
+              image={product.Image}
+              alt={product.Image.name}
+              price={product.Price}
+              creator={product.creators.Name}
+            ></Card>
           );
         })}
       </div>
@@ -42,7 +45,7 @@ export default function Pagination(props) {
         pageCount={pageCount}
         previousLabel="<<"
         renderOnZeroPageCount={null}
-        containerClassName="pagination flex justify-center item-center mb-2 gap-x-2"
+        containerClassName="pagination flex justify-center item-center mb-2 mt-[50px] gap-x-2"
         pageLinkClassName="page-num"
         previousLinkClassName="page-num"
         nextLinkClassName="page-num"

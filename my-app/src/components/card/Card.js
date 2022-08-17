@@ -1,22 +1,22 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Card = ({ to, tittle, image }) => {
+const Card = ({ to, tittle, image, alt, price, creator }) => {
   return (
     <NavLink to={to}>
       <div className="w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all">
         <img
-          src="https://img.freepik.com/free-vector/vector-illustration-mountain-landscape_1441-71.jpg"
-          // src={image}
-          alt=""
+          // src="https://img.freepik.com/free-vector/vector-illustration-mountain-landscape_1441-71.jpg"
+          src={ image }
+          alt={ alt }
           className="object-cover w-[222px] h-[222px] mx-auto"
         />
         <div className="mt-5 flex justify-between items-center mx-8">
           <div className="leading-none">
-            <span className="text-sm">Crazy Apes</span> <br></br>
-            {/* <span className="text-sm">{tittle}</span> <br></br> */}
+            {/* <span className="text-sm">Crazy Apes</span> <br></br> */}
+            <span className="text-sm">{tittle}</span> <br></br>
             <span className="text-xs">
-              Created by <strong> hx45...250e</strong>
+              Created by <strong> {creator}</strong>
             </span>
           </div>
           <img
@@ -27,7 +27,7 @@ const Card = ({ to, tittle, image }) => {
         </div>
         <div className="mx-7 mt-4 flex gap-2 justify-start items-center">
           <img src="https://i.im.ge/2022/08/07/FR3uFm.Ellipse-6.png" alt="" />
-          <span className="text-[10px]">3.90 ICX</span>
+          <span className="text-[10px]">{price} ICX</span>
         </div>
       </div>
     </NavLink>
