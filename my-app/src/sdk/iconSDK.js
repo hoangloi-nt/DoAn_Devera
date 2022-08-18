@@ -1,4 +1,5 @@
 import IconService from "icon-sdk-js";
+import { toast } from "react-toastify";
 const { IconConverter, IconBuilder, IconAmount, IconUtil, HttpProvider } =
   IconService;
 const { IcxTransactionBuilder } = IconBuilder;
@@ -67,6 +68,7 @@ export const connectWallet = (setAddress) => {
       }
     };
     window.addEventListener("ICONEX_RELAY_RESPONSE", eventHandler);
+    toast.success("Connect successfully!");
   }
 };
 

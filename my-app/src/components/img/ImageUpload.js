@@ -8,6 +8,7 @@ const ImageUpload = (props) => {
     className = "",
     image = "",
     handleDeleteImage = () => {},
+    avatar = "",
     ...rest
   } = props;
 
@@ -17,7 +18,7 @@ const ImageUpload = (props) => {
         className={`cursor-pointer flex items-center justify-center border border-[#353242] w-full min-h-[288px] rounded-sm ${className} relative overflow-hidden group min-w-[288px] bg-[#262338]`}
       >
         <input type="file" name={name} className="hidden-input" {...rest} />
-        {!image && (
+        {!avatar && !image && (
           <div className="flex flex-col items-center text-center pointer-events-none">
             <img
               src={ImgUpload}
@@ -25,12 +26,26 @@ const ImageUpload = (props) => {
               className="max-w-[80px] mb-5"
             />
             <p className="font-semibold">Upload</p>
-            <p className="mt-3 font-sans text-xs">
-              Upload your work, customize your <br></br> NFTs with properties,
-              stats, and <br></br>unlockable content.
-            </p>
+            <div className="mt-3 font-sans text-xs">
+              {avatar ? (
+                "Choose your new avatar."
+              ) : (
+                <div>
+                  Upload your work, customize your <br></br> NFTs with
+                  properties, stats, and <br></br>unlockable content.
+                </div>
+              )}
+            </div>
           </div>
         )}
+        {avatar && !image && (
+          <div className="flex flex-col items-center text-center pointer-events-none">
+            <img src={avatar} alt="upload-img" className="max-w-[100px] mb-5" />
+            <p className="font-semibold">Upload</p>
+            <p className="mt-3 font-sans text-xs">"Choose your new avatar."</p>
+          </div>
+        )}
+
         {image && (
           <div className="flex flex-col items-center text-center pointer-events-none">
             <img
