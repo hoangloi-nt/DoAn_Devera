@@ -31,6 +31,7 @@ const CreatePage = () => {
         Price: values.price,
         Category: values.category,
         image: values.image,
+        creators: values.creators,
       });
       console.log(response);
       reset({
@@ -40,23 +41,35 @@ const CreatePage = () => {
         category: "",
         creators: "",
       });
+      setSelectedImage(null);
       toast.success("Create NFT successfully!");
     } catch (error) {
       console.log(error);
       toast.error(error.message);
+      setSelectedImage(null);
     }
   };
 
-  // useEffect(() => {
-  //   if (!userInfo.address) return;
-  //   async function fetchUserData() {
-  //     setValue("creators", {
-  //       ...userInfo,
-  //     });
-  //   }
-  //   fetchUserData();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [userInfo.address]);
+  useEffect(() => {
+    if (!userInfo.address) return;
+    async function fetchUserData() {
+      setValue("creators", {
+        Address: userInfo.address,
+        Avatar: userInfo.avatar,
+        Name: userInfo.name,
+        Wallet: userInfo.price,
+        id: userInfo.id,
+      });
+    }
+    fetchUserData();
+  }, [
+    setValue,
+    userInfo.address,
+    userInfo.avatar,
+    userInfo.id,
+    userInfo.name,
+    userInfo.price,
+  ]);
 
   const handleSelectImage = async (e) => {
     const file = e.target.files[0];

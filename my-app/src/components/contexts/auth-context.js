@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
@@ -20,8 +21,42 @@ function AuthProvider(props) {
       address,
       price,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [address, price]);
+
+  useEffect(() => {
+    async function fetchCreatorData() {
+      const response = await axios.get("http://localhost:1337/creators");
+      const resProduct = await axios.get("http://localhost:1337/products");
+
+      const productResults = [];
+      resProduct.data.forEach((doc) => {
+        if (doc.creators.Address === address) {
+          productResults.push({
+            Category: doc.Category,
+            Image: doc.Image,
+            Name: doc.Name,
+            Price: doc.Price,
+            id: doc.id,
+          });
+        }
+      });
+
+      response.data.forEach((doc) => {
+        if (doc.Address === address) {
+          setUserInfo({
+            address,
+            price,
+            name: doc.Name,
+            avatar: doc.Avatar,
+            id: doc.id,
+            products: productResults,
+          });
+        }
+      });
+    }
+    fetchCreatorData();
+  }, [address, price]);
+
   return <AuthContext.Provider value={value} {...props}></AuthContext.Provider>;
 }
 

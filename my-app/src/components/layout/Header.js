@@ -9,6 +9,8 @@ import {
 } from "../../sdk/iconSDK.js";
 import useClickOutSide from "../../hooks/useClickOutSide";
 import { useEffect } from "react";
+import { useAuth } from "components/contexts/auth-context";
+import Swal from "sweetalert2";
 
 const menuLinks = [
   {
@@ -35,6 +37,8 @@ const Header = () => {
   const [price, setPrice] = useState("");
   const navigate = useNavigate();
 
+  const { userInfo } = useAuth();
+
   useEffect(() => {
     async function getPrice() {
       const price = await getBalance(address);
@@ -43,6 +47,27 @@ const Header = () => {
     getPrice();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const disConnectHandle = () => {
+    Swal.fire({
+      title: "Do you want to disconnect?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, disconnect!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        disConnect(setAddress);
+        navigate("/");
+        Swal.fire(
+          "Disconnect!",
+          "You have successfully disconnected!",
+          "success"
+        );
+      }
+    });
+  };
 
   return (
     <header className="!py-5 container flex items-center gap-x-10">
@@ -91,7 +116,10 @@ const Header = () => {
           <div className="flex justify-center items-center gap-x-3">
             <div className="avatar w-10 h-10">
               <img
-                src="https://vcdn-sohoa.vnecdn.net/2022/03/08/bored-ape-nft-accidental-0-728-5490-8163-1646708401.jpg"
+                src={
+                  userInfo.avatar ||
+                  "https://vcdn-sohoa.vnecdn.net/2022/03/08/bored-ape-nft-accidental-0-728-5490-8163-1646708401.jpg"
+                }
                 alt=""
                 className="object-cover w-full h-full rounded-full"
               />
@@ -102,7 +130,7 @@ const Header = () => {
               ref={nodeRef}
             >
               {hashShortener(address)}
-              <p className="text-white font-medium">{price} ICX</p>
+              <div className="text-white font-medium">{price} ICX</div>
               {show && (
                 <div className="absolute flex justify-center items-start flex-col bg-white w-[200px] rounded-lg overflow-hidden translate-y-2">
                   <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full ">
@@ -114,13 +142,13 @@ const Header = () => {
                   <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full">
                     <NavLink to={"/create"}>Create NFT</NavLink>
                   </span>
+                  <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full">
+                    <NavLink to={"/profile"}>Profile</NavLink>
+                  </span>
                   <Button
                     kind="primary"
                     className="w-full !rounded-tl-none !rounded-tr-none text-white"
-                    onClick={() => {
-                      disConnect(setAddress);
-                      navigate("/");
-                    }}
+                    onClick={disConnectHandle}
                   >
                     Disconnect
                   </Button>
