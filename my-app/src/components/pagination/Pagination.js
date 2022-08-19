@@ -20,6 +20,24 @@ export default function Pagination(props) {
     setItemOffset(newOffset);
   };
 
+  if (currentItems.length <= itemsPerPage) {
+    return (
+      <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
+        {currentItems.map((product) => {
+          return (
+            <Card
+              to={"/"}
+              tittle={product.Name}
+              price={product.Price}
+              image={product.Image[0].url}
+              creator={product.creators.Name}
+            ></Card>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
@@ -28,9 +46,8 @@ export default function Pagination(props) {
             <Card
               to={"/"}
               tittle={product.Name}
-              image={product.Image}
-              alt={product.Image.name}
               price={product.Price}
+              image={product.Image[0].url}
               creator={product.creators.Name}
             ></Card>
           );

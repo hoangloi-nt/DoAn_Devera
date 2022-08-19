@@ -8,7 +8,7 @@ const Card = ({ to, tittle, image, alt, price, creator }) => {
         <img
           // src="https://img.freepik.com/free-vector/vector-illustration-mountain-landscape_1441-71.jpg"
           src={ image }
-          alt={ alt }
+          alt={ "" }
           className="object-cover w-[222px] h-[222px] mx-auto"
         />
         <div className="mt-5 flex justify-between items-center mx-8">
