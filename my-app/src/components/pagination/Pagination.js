@@ -29,8 +29,9 @@ export default function Pagination(props) {
               to={"/"}
               tittle={product.Name}
               price={product.Price}
-              image={product.Image[0].url}
-              creator={product.creators.Name}
+              image={product.image}
+              address={product.creators.address}
+              creatorAva={product.creators.avatar}
             ></Card>
           );
         })}
@@ -48,7 +49,7 @@ export default function Pagination(props) {
               tittle={product.Name}
               price={product.Price}
               image={product.Image[0].url}
-              creator={product.creators.Name}
+              creator={product.creators.address}
             ></Card>
           );
         })}

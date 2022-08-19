@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'components/button';
 import { Pagination } from 'components/pagination';
 
-const categories = [
-  "Music",
-  "Art",
-  "Sport",
-  "Photography",
-  "Virtual Reality",
-  "Avatar",
-];
+
  
 const Category = () => {
+  const categories = [
+    "Music",
+    "Art",
+    "Sport",
+    "Photography",
+    "Virtual Reality",
+    "Avatar",
+  ];
+  
   const [selectedCategory, setSelectedCategogy] = useState(categories[0]);
   const [productList, setProductList] = useState([]);
 
@@ -22,6 +24,8 @@ const Category = () => {
       })
     );
   }, []);
+
+
  
   return (
     <div>
