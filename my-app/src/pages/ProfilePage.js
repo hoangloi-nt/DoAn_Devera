@@ -1,4 +1,4 @@
-import { CopyIcon } from "assets/img/icons/copyIcon";
+import { CopyIcon } from "assets/icons/copyIcon";
 import axios from "axios";
 import { Button } from "components/button";
 import { useAuth } from "components/contexts/auth-context";
@@ -31,7 +31,7 @@ const ProfilePage = () => {
     try {
       await axios.put(`http://localhost:1337/creators/${id}`, {
         Name: data.name,
-        Avatar: data.avatar,
+        avatar: data.avatar,
         Wallet: userInfo.price,
       });
       // console.log(response);
@@ -45,10 +45,10 @@ const ProfilePage = () => {
   async function createCreator(data) {
     try {
       await axios.post(`http://localhost:1337/creators`, {
-        Address: data.address,
+        address: data.address,
         Name: data.name,
         Wallet: userInfo.price,
-        Avatar: data.avatar,
+        avatar: data.avatar,
       });
       // console.log(response);
       toast.success("Update information successfully!");
@@ -63,7 +63,7 @@ const ProfilePage = () => {
     let checkCreator = false;
     const response = await axios.get("http://localhost:1337/creators");
     response.data.forEach((doc) => {
-      if (doc.Address === userInfo.address) {
+      if (doc.address === userInfo.address) {
         updateCreator(doc.id, values);
         checkCreator = true;
       }
@@ -78,13 +78,13 @@ const ProfilePage = () => {
       try {
         const response = await axios.get("http://localhost:1337/creators");
         response.data.forEach((doc) => {
-          if (doc.Address === userInfo.address) {
+          if (doc.address === userInfo.address) {
             reset({
               name: doc.Name,
               address: userInfo.address,
               wallet: userInfo.price,
             });
-            setAvatar(doc.Avatar);
+            setAvatar(doc.avatar);
           } else {
             reset({
               address: userInfo.address,

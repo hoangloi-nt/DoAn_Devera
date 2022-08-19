@@ -19,7 +19,7 @@ const CreatePage = () => {
       price: "",
       image: "",
       category: "",
-      creators: "",
+      createby: "",
     },
   });
 
@@ -31,7 +31,7 @@ const CreatePage = () => {
         Price: values.price,
         Category: values.category,
         image: values.image,
-        creators: values.creators,
+        createby: values.createby,
       });
       console.log(response);
       reset({
@@ -39,7 +39,7 @@ const CreatePage = () => {
         price: "",
         image: "",
         category: "",
-        creators: "",
+        createby: "",
       });
       setSelectedImage(null);
       toast.success("Create NFT successfully!");
@@ -53,7 +53,7 @@ const CreatePage = () => {
   useEffect(() => {
     if (!userInfo.address) return;
     async function fetchUserData() {
-      setValue("creators", {
+      setValue("createby", {
         Address: userInfo.address,
         Avatar: userInfo.avatar,
         Name: userInfo.name,

@@ -1,13 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { hashShortener } from "sdk/iconSDK";
 
-const Card = ({ to, tittle, image }) => {
+const Card = ({ to, tittle, image, address }) => {
   return (
     <NavLink to={to}>
       <div className="w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all">
         <img
-          src="https://img.freepik.com/free-vector/vector-illustration-mountain-landscape_1441-71.jpg"
-          // src={image}
+          src={
+            image ||
+            "https://img.freepik.com/free-vector/vector-illustration-mountain-landscape_1441-71.jpg"
+          }
           alt=""
           className="object-cover w-[222px] h-[222px] mx-auto"
         />
@@ -16,7 +19,7 @@ const Card = ({ to, tittle, image }) => {
             <span className="text-sm">Crazy Apes</span> <br></br>
             {/* <span className="text-sm">{tittle}</span> <br></br> */}
             <span className="text-xs">
-              Created by <strong> hx45...250e</strong>
+              Created by <strong> {hashShortener(address)}</strong>
             </span>
           </div>
           <img

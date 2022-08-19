@@ -30,10 +30,10 @@ function AuthProvider(props) {
 
       const productResults = [];
       resProduct.data.forEach((doc) => {
-        if (doc.creators.Address === address) {
+        if (doc.createby.address === address) {
           productResults.push({
             Category: doc.Category,
-            Image: doc.Image,
+            Image: doc.image,
             Name: doc.Name,
             Price: doc.Price,
             id: doc.id,
@@ -42,14 +42,14 @@ function AuthProvider(props) {
       });
 
       response.data.forEach((doc) => {
-        if (doc.Address === address) {
+        if (doc.address === address) {
           setUserInfo({
             address,
             price,
             name: doc.Name,
-            avatar: doc.Avatar,
+            avatar: doc.avatar,
             id: doc.id,
-            products: productResults,
+            create: productResults,
           });
         }
       });
