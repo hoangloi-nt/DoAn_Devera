@@ -15,10 +15,21 @@
     "Name": {
       "type": "string"
     },
-    "products": {
+    "Wallet": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "create": {
+      "via": "createby",
       "collection": "products"
     },
-    "Wallet": {
+    "buy": {
+      "via": "boughtby",
+      "collection": "products"
+    },
+    "avatar": {
       "type": "string"
     }
   }
