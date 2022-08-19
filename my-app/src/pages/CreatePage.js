@@ -1,13 +1,16 @@
 import { Button } from "components/button";
 import { ImageUpload } from "components/img";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../components/input/Input";
 import { toast } from "react-toastify";
 import { TopCreators } from "components/creator";
+import { useAuth } from "components/contexts/auth-context";
+import axios from "axios";
 
 const CreatePage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const { userInfo } = useAuth();
 
   const { control, setValue, handleSubmit, reset } = useForm({
     mode: "onChange",
@@ -15,29 +18,74 @@ const CreatePage = () => {
       name: "",
       price: "",
       image: "",
+      category: "",
+      createby: "",
     },
   });
 
   const createNFT = async (values) => {
+    console.log(values);
     try {
-      console.log(values);
+      const response = await axios.post("http://localhost:1337/products", {
+        Name: values.name,
+        Price: values.price,
+        Category: values.category,
+        image: values.image,
+        createby: values.createby,
+      });
+      console.log(response);
       reset({
         name: "",
         price: "",
         image: "",
+        category: "",
+        createby: "",
       });
+      setSelectedImage(null);
       toast.success("Create NFT successfully!");
     } catch (error) {
       console.log(error);
       toast.error(error.message);
+      setSelectedImage(null);
     }
   };
 
-  const handleSelectImage = (e) => {
+  useEffect(() => {
+    if (!userInfo.address) return;
+    async function fetchUserData() {
+      setValue("createby", {
+        Address: userInfo.address,
+        Avatar: userInfo.avatar,
+        Name: userInfo.name,
+        Wallet: userInfo.price,
+        id: userInfo.id,
+      });
+    }
+    fetchUserData();
+  }, [
+    setValue,
+    userInfo.address,
+    userInfo.avatar,
+    userInfo.id,
+    userInfo.name,
+    userInfo.price,
+  ]);
+
+  const handleSelectImage = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
     setSelectedImage(file);
-    setValue("image", file);
+    const bodyFormData = new FormData();
+    bodyFormData.append("image", file);
+    const response = await axios({
+      method: "post",
+      url: "https://api.imgbb.com/1/upload?key=ba1f1db043890d6ead7a1b777cb35cd5",
+      data: bodyFormData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    setValue("image", `${response.data.data.url}`);
   };
 
   const handleDeleteImage = () => {
@@ -70,6 +118,17 @@ const CreatePage = () => {
                 placeholder="Enter a price in ICX"
                 className="mt-2"
                 type="number"
+                required
+              ></Input>
+            </div>
+            <div>
+              <label htmlFor="category">Category</label>
+              <Input
+                id="category"
+                name="category"
+                control={control}
+                placeholder="Enter your category"
+                className="mt-2"
                 required
               ></Input>
             </div>

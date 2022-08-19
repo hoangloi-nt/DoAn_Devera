@@ -2,20 +2,29 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { hashShortener } from "sdk/iconSDK";
 
-const Card = ({ to, tittle, image, price, address, creatorAva }) => {
+
+const Card = ({ to, title, image, price, address, creatorAva }) => {
+
   return (
     <NavLink to={to}>
       <div className="w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all">
         <img
-          src={ image || "https://img.freepik.com/free-vector/vector-illustration-mountain-landscape_1441-71.jpg" }
+
+          src={
+            image ||
+            "https://img.freepik.com/free-vector/vector-illustration-mountain-landscape_1441-71.jpg"
+          }
+
           alt=""
           className="object-cover w-[222px] h-[222px] mx-auto"
         />
         <div className="mt-5 flex justify-between items-center mx-8">
           <div className="leading-none">
-            <span className="text-sm">{ tittle }</span> <br></br>
+            <span className="text-sm">{ title }</span> <br></br>
             <span className="text-xs">
+
               Created by <strong> { hashShortener(address) }</strong>
+
             </span>
           </div>
           <img

@@ -18,22 +18,18 @@
     "Price": {
       "type": "decimal"
     },
-    "Image": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
-    },
-    "creators": {
+    "createby": {
+      "via": "create",
       "model": "creators"
     },
     "Category": {
+      "type": "string"
+    },
+    "boughtby": {
+      "via": "buy",
+      "model": "creators"
+    },
+    "image": {
       "type": "string"
     }
   }
