@@ -1,7 +1,6 @@
+import { Category } from "components/category";
 import React from "react";
 import { Button } from "../components/button";
-import { Card } from "../components/card";
-import { Pagination } from "../components/pagination";
 
 const HomePage = () => {
   return (
@@ -39,37 +38,7 @@ const HomePage = () => {
       </div>
       <div className="flex flex-col justify-center border-t border-t-zinc-400 border-opacity-20">
         <div className="my-10 text-xl text-left">Super Hot</div>
-        <div className="flex items-center justify-center text-sm gap-x-10">
-          <Button kind="secondary" height={"34px"}>
-            Music
-          </Button>
-          <Button kind="secondary" height={"34px"} active={true}>
-            Virtual Reality
-          </Button>
-          <Button kind="secondary" height={"34px"}>
-            Music
-          </Button>
-          <Button kind="secondary" height={"34px"}>
-            Music
-          </Button>
-          <Button kind="secondary" height={"34px"}>
-            Music
-          </Button>
-          <Button kind="secondary" height={"34px"}>
-            Music
-          </Button>
-        </div>
-        <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
-          <Card to={"/"}></Card>
-          <Card to={"/"}></Card>
-          <Card to={"/"}></Card>
-          <Card to={"/"}></Card>
-          <Card to={"/"}></Card>
-          <Card to={"/"}></Card>
-          <Card to={"/"}></Card>
-          <Card to={"/"}></Card>
-        </div>
-        <div className="my-5">{/* <Pagination></Pagination> */}</div>
+        <Category />
       </div>
     </div>
   );
