@@ -79,6 +79,7 @@ const ProfilePage = () => {
         const response = await axios.get("http://localhost:1337/creators");
         response.data.forEach((doc) => {
           if (doc.address === userInfo.address) {
+            console.log(doc);
             reset({
               name: doc.Name,
               address: userInfo.address,

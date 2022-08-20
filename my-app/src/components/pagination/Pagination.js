@@ -24,14 +24,15 @@ export default function Pagination(props) {
     return (
       <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
         {currentItems.map((product) => {
+          console.log(product);
           return (
             <Card
               to={"/"}
-              tittle={product.Name}
-              price={product.Price}
-              image={product.image}
-              address={product.creators.address}
-              creatorAva={product.creators.avatar}
+              tittle={product?.Name}
+              price={product?.Price}
+              image={product?.image}
+              address={product?.createby?.address}
+              avatar={product?.createby?.avatar}
             ></Card>
           );
         })}
@@ -43,13 +44,14 @@ export default function Pagination(props) {
     <>
       <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
         {currentItems.map((product) => {
+          console.log(product);
           return (
             <Card
               to={"/"}
               tittle={product.Name}
               price={product.Price}
               image={product.Image[0].url}
-              creator={product.creators.address}
+              creator={product.createby.address}
             ></Card>
           );
         })}
