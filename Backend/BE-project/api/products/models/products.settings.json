@@ -31,6 +31,9 @@
     },
     "image": {
       "type": "string"
+    },
+    "views": {
+      "type": "biginteger"
     }
   }
 }
