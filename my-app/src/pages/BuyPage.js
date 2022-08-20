@@ -19,11 +19,12 @@ const BuyPage = () => {
 			to: address,
 			value: price,
 		});
+
 		if (transferSuccess === true) {
 			console.log("Done");
 			updateProduct(nftId, {
 				//user
-				id: buyUserInfo.id,
+				id: userInfo.id,
 			});
 			setSold(true);
 		}
@@ -58,19 +59,7 @@ const BuyPage = () => {
 	}
 
 	const creatorId = productData.creators;
-	const buyUserAddress = userInfo.address;
-	let buyUserInfo;
-	useEffect(() => {
-		async function fetchBuyUserData() {
-			const creator = await axios.get(`http://localhost:1337/creators/`);
-			creator.data.forEach((item) => {
-				if (item.address === buyUserAddress) {
-					buyUserInfo = item;
-				}
-			});
-		}
-		fetchBuyUserData();
-	});
+
 	console.log("render");
 	useEffect(() => {
 		if (!creatorId) return;
@@ -119,7 +108,7 @@ const BuyPage = () => {
 			</div>
 			<div className="flex flex-col justify-center my-4">
 				<div className="mb-6 text-left heading-text">Move from this user</div>
-				<div className="grid grid-cols-4 mx-auto gap-x-10">
+				<div className="grid grid-cols-4 gap-10 mx-auto">
 					{listProductData.map((item) => (
 						<Card
 							key={item.id}
