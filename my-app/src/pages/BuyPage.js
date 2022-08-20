@@ -44,7 +44,7 @@ const BuyPage = () => {
 			}
 		}
 		fetchProductData();
-	}, []);
+	}, [nftId]);
 
 	async function updateProduct(id, data) {
 		try {
@@ -57,10 +57,7 @@ const BuyPage = () => {
 			toast.error("Buy failed!", error.message);
 		}
 	}
-
-	const creatorId = productData.creators;
-
-	console.log("render");
+	const creatorId = productData?.createby?.id;
 	useEffect(() => {
 		if (!creatorId) return;
 		async function fetchCreatorData() {
@@ -107,9 +104,9 @@ const BuyPage = () => {
 				)}
 			</div>
 			<div className="flex flex-col justify-center my-4">
-				<div className="mb-6 text-left heading-text">Move from this user</div>
+				<div className="mb-6 text-left heading-text">More from this user</div>
 				<div className="grid grid-cols-4 gap-10 mx-auto">
-					{listProductData.map((item) => (
+					{listProductData.slice(0, 8).map((item) => (
 						<Card
 							key={item.id}
 							to={"/"}
@@ -121,9 +118,13 @@ const BuyPage = () => {
 						></Card>
 					))}
 				</div>
-				<NavLink className={"text-right my-3"} to={"/"}>
-					View all...{" "}
-				</NavLink>
+				{listProductData.length > 8 ? (
+					<NavLink className={"text-right my-3"} to={"/"}>
+						View all...{" "}
+					</NavLink>
+				) : (
+					<></>
+				)}
 			</div>
 		</div>
 	);
