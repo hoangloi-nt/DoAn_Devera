@@ -27,8 +27,8 @@ export default function Pagination(props) {
           console.log(product);
           return (
             <Card
-              to={"/"}
-              tittle={product?.Name}
+              to={`/buy/${product.id}`}
+              title={product?.Name}
               price={product?.Price}
               image={product?.image}
               address={product?.createby?.address}
@@ -48,7 +48,7 @@ export default function Pagination(props) {
           return (
             <Card
               to={"/"}
-              tittle={product.Name}
+              title={product.Name}
               price={product.Price}
               image={product.Image[0].url}
               creator={product.createby.address}
