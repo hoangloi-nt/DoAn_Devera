@@ -11,10 +11,12 @@ const BuyPage = lazy(() => import("pages/BuyPage"));
 const ArtistPage = lazy(() => import("pages/ArtistPage"));
 const ArtistDetailPage = lazy(() => import("pages/ArtistDetailPage"));
 const Marketplace = lazy(() => import("pages/Marketplace/Marketplace"));
+const Collection = lazy(() => import("pages/Collection/Collection"));
 
 const Main = lazy(() => import("components/layout/Main"));
 
 const App = () => {
+
   return (
     <Fragment>
       <AuthProvider>
@@ -22,6 +24,10 @@ const App = () => {
           <Routes>
             <Route element={<Main></Main>}>
               <Route path="/" element={<HomePage></HomePage>}></Route>
+    							<Route
+								path="/collection"
+								element={<Collection></Collection>}
+							></Route>
               <Route
                 path="/marketplace"
                 element={<Marketplace></Marketplace>}
@@ -45,6 +51,7 @@ const App = () => {
       </AuthProvider>
     </Fragment>
   );
+
 };
 
 export default App;
