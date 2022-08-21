@@ -1,6 +1,10 @@
 import { Category } from "components/category";
 import React from "react";
 import { Button } from "../components/button";
+import deveraCharacter from "../img/Devera-brand-character-1.png";
+import logoIcon from "../img/logo-dark-1.png";
+import logoDevera from "../img/Devera-logo-red-1.png";
+import logoLecle from "../img/Lecle-logo-yellow-1.png";
 
 const HomePage = () => {
   return (
@@ -29,12 +33,12 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <img src={require("../img/Devera-brand-character-1.png")} alt="" />
+        <img src={deveraCharacter} alt="Devera Brand Character" />
       </div>
       <div className="flex items-center justify-end my-10 gap-x-10">
-        <img src={require("../img/logo-dark-1.png")} alt="" />
-        <img src={require("../img/Devera-logo-red-1.png")} alt="" />
-        <img src={require("../img/Lecle-logo-yellow-1.png")} alt="" />
+        <img src={logoIcon} alt="Icon logo" />
+        <img src={logoDevera} alt="Devera logo" />
+        <img src={logoLecle} alt="Lecle logo" />
       </div>
       <div className="flex flex-col justify-center border-t border-t-zinc-400 border-opacity-20">
         <div className="my-10 text-xl text-left">Super Hot</div>

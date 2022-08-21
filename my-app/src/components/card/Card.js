@@ -20,10 +20,10 @@ const Card = ({ to, title, image, price, address, creatorAva }) => {
         />
         <div className="mt-5 flex justify-between items-center mx-8">
           <div className="leading-none">
-            <span className="text-sm">{ title }</span> <br></br>
+            <span className="text-sm">{title}</span> <br></br>
             <span className="text-xs">
 
-              Created by <strong> { hashShortener(address) }</strong>
+              Created by <strong> {hashShortener(address)}</strong>
 
             </span>
           </div>
