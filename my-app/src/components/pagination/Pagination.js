@@ -20,7 +20,7 @@ export default function Pagination(props) {
     setItemOffset(newOffset);
   };
 
-  if (currentItems.length <= itemsPerPage) {
+  const Product = () => {
     return (
       <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
         {currentItems.map((product) => {
@@ -40,8 +40,17 @@ export default function Pagination(props) {
     );
   }
 
+  if (items.length <= itemsPerPage) {
+    return (
+      <Product />
+    )
+  }
+
   return (
     <>
+
+      <Product />
+
       <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
         {currentItems.map((product) => {
           console.log(product);
@@ -56,6 +65,7 @@ export default function Pagination(props) {
           );
         })}
       </div>
+
 
       <ReactPaginate
         breakLabel="..."

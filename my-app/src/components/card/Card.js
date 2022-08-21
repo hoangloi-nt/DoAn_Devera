@@ -18,7 +18,9 @@ const Card = ({ to, title, image, price, address, avatar }) => {
           <div className="leading-none">
             <span className="text-sm">{title}</span> <br></br>
             <span className="text-xs">
+
               Created by <strong> {hashShortener(address)}</strong>
+
             </span>
           </div>
           <img

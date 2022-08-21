@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'components/button';
 import { Pagination } from 'components/pagination';
-
+import axios from 'axios';
 
  
 const Category = () => {
@@ -11,24 +11,23 @@ const Category = () => {
     "Sport",
     "Photography",
     "Virtual Reality",
-    "Avatar",
+    "Video",
   ];
   
   const [selectedCategory, setSelectedCategogy] = useState(categories[0]);
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:1337/products").then((response) =>
-      response.json().then((data) => {
-        setProductList(data);
-      })
-    );
+    axios
+      .get("http://localhost:1337/products")
+      .then((res) => {
+        setProductList(res.data);
+      });
   }, []);
-
 
  
   return (
-    <div>
+    <>
       <div className="categories flex items-center justify-center text-sm gap-x-10">
         {categories.map((category) => (
           <Button
@@ -45,7 +44,7 @@ const Category = () => {
       <div className="my-5">
         <Pagination items={productList.filter(products => products.Category === selectedCategory)}></Pagination>
       </div>
-    </div>
+    </>
   );
 }
 
