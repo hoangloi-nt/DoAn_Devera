@@ -132,7 +132,7 @@ const Header = () => {
               {hashShortener(address)}
               <div className="text-white font-medium">{price} ICX</div>
               {show && (
-                <div className="absolute flex justify-center items-start flex-col bg-white w-[200px] rounded-lg overflow-hidden translate-y-2">
+                <div className="absolute flex justify-center items-start flex-col bg-white w-[200px] rounded-lg overflow-hidden translate-y-2 z-10">
                   <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full ">
                     Change language
                   </span>

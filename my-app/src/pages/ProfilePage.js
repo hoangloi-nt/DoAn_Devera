@@ -122,6 +122,10 @@ const ProfilePage = () => {
     setSelectedImage(null);
   };
 
+  useEffect(() => {
+    document.title = "Profile Page";
+  }, []);
+
   return (
     <div className="container">
       <div className="text-3xl mt-10 mb-10 mx-auto text-center">Profile</div>

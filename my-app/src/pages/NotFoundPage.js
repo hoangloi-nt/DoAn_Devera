@@ -1,7 +1,10 @@
 import { Button } from "components/button";
-import React from "react";
+import React, { useEffect } from "react";
 
 const NotFoundPage = () => {
+  useEffect(() => {
+    document.title = "Not Found Page";
+  }, []);
   return (
     <div className="container flex flex-col justify-center items-center">
       <img

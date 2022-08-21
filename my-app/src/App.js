@@ -8,6 +8,8 @@ const NotFoundPage = lazy(() => import("pages/NotFoundPage"));
 const HomePage = lazy(() => import("pages/HomePage"));
 const CreatePage = lazy(() => import("pages/CreatePage"));
 const BuyPage = lazy(() => import("pages/BuyPage"));
+const ArtistPage = lazy(() => import("pages/ArtistPage"));
+const ArtistDetailPage = lazy(() => import("pages/ArtistDetailPage"));
 const Marketplace = lazy(() => import("pages/Marketplace/Marketplace"));
 
 const Main = lazy(() => import("components/layout/Main"));
@@ -23,6 +25,11 @@ const App = () => {
               <Route
                 path="/marketplace"
                 element={<Marketplace></Marketplace>}
+              ></Route>
+              <Route path="/artist" element={<ArtistPage></ArtistPage>}></Route>
+              <Route
+                path="/artist/:id"
+                element={<ArtistDetailPage></ArtistDetailPage>}
               ></Route>
               <Route path="/create" element={<CreatePage></CreatePage>}></Route>
               <Route path="/buy/:nftId" element={<BuyPage></BuyPage>}></Route>
