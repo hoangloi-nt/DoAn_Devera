@@ -9,6 +9,7 @@ import { useState } from "react";
 import { transfer } from "sdk/iconSDK.js";
 import { useAuth } from "components/contexts/auth-context";
 const BuyPage = () => {
+
 	const { nftId } = useParams();
 	const [productData, setProductData] = useState({});
 	const [listProductData, setListProductData] = useState([]);
@@ -128,6 +129,7 @@ const BuyPage = () => {
 			</div>
 		</div>
 	);
+
 };
 
 export default BuyPage;
