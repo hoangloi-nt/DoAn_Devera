@@ -1,5 +1,5 @@
 import { Category } from "components/category";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "../components/button";
 import deveraCharacter from "../img/Devera-brand-character-1.png";
 import logoIcon from "../img/logo-dark-1.png";
@@ -7,6 +7,9 @@ import logoDevera from "../img/Devera-logo-red-1.png";
 import logoLecle from "../img/Lecle-logo-yellow-1.png";
 
 const HomePage = () => {
+  useEffect(() => {
+    document.title = "Devestore Homepage";
+  }, []);
   return (
     <div className="container">
       <div className="flex items-center justify-between mt-10">
