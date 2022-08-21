@@ -15,9 +15,6 @@
     "Name": {
       "type": "string"
     },
-    "Wallet": {
-      "type": "string"
-    },
     "address": {
       "type": "string"
     },
@@ -31,6 +28,9 @@
     },
     "avatar": {
       "type": "string"
+    },
+    "Wallet": {
+      "type": "decimal"
     }
   }
 }

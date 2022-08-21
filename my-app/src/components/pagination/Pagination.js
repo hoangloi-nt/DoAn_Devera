@@ -24,6 +24,7 @@ export default function Pagination(props) {
     return (
       <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
         {currentItems.map((product) => {
+          console.log(product);
           return (
             <Card
               to={`/buy/${product.id}`}
@@ -47,7 +48,24 @@ export default function Pagination(props) {
 
   return (
     <>
+
       <Product />
+
+      <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
+        {currentItems.map((product) => {
+          console.log(product);
+          return (
+            <Card
+              to={"/"}
+              title={product.Name}
+              price={product.Price}
+              image={product.Image[0].url}
+              creator={product.createby.address}
+            ></Card>
+          );
+        })}
+      </div>
+
 
       <ReactPaginate
         breakLabel="..."

@@ -79,8 +79,9 @@ const ProfilePage = () => {
         const response = await axios.get("http://localhost:1337/creators");
         response.data.forEach((doc) => {
           if (doc.address === userInfo.address) {
+            console.log(doc);
             reset({
-              name: doc.Name,
+              name: userInfo.Name || doc.Name,
               address: userInfo.address,
               wallet: userInfo.price,
             });
@@ -98,7 +99,7 @@ const ProfilePage = () => {
       }
     }
     fetchData();
-  }, [imageUrl, reset, userInfo.address, userInfo.price]);
+  }, [imageUrl, reset, userInfo.Name, userInfo.address, userInfo.price]);
 
   const handleSelectImage = async (e) => {
     const file = e.target.files[0];

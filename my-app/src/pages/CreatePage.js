@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import { TopCreators } from "components/creator";
 import { useAuth } from "components/contexts/auth-context";
 import axios from "axios";
+import { transfer } from "sdk/iconSDK";
+import Swal from "sweetalert2";
 
 const CreatePage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -25,29 +27,49 @@ const CreatePage = () => {
 
   const createNFT = async (values) => {
     console.log(values);
-    try {
-      const response = await axios.post("http://localhost:1337/products", {
-        Name: values.name,
-        Price: values.price,
-        Category: values.category,
-        image: values.image,
-        createby: values.createby,
-      });
-      console.log(response);
-      reset({
-        name: "",
-        price: "",
-        image: "",
-        category: "",
-        createby: "",
-      });
-      setSelectedImage(null);
-      toast.success("Create NFT successfully!");
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
-      setSelectedImage(null);
+    const tax = (Number(values.price) * 2) / 100;
+    console.log("tax", tax);
+
+    Swal.fire(
+      "Product Creation Fee",
+      `Your fee to create this product is ${tax}`,
+      "question"
+    );
+
+    const transferSuccess = await transfer({
+      to: "hxd9852eb7b8c16d76b5135b0b5e01dcc52725e8cd",
+      value: tax,
+    });
+    if (transferSuccess) {
+      try {
+        const response = await axios.post("http://localhost:1337/products", {
+          Name: values.name,
+          Price: values.price,
+          Category: values.category,
+          image: values.image,
+          createby: {
+            Wallet: `${Number(userInfo.price) - tax}`,
+            ...values.createby,
+          },
+        });
+        console.log(response);
+        reset({
+          name: "",
+          price: "",
+          image: "",
+          category: "",
+          createby: "",
+        });
+        setSelectedImage(null);
+        toast.success("Create NFT successfully!");
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+        setSelectedImage(null);
+      }
     }
+
+    console.log(userInfo.price);
   };
 
   useEffect(() => {
@@ -57,7 +79,6 @@ const CreatePage = () => {
         Address: userInfo.address,
         Avatar: userInfo.avatar,
         Name: userInfo.name,
-        Wallet: userInfo.price,
         id: userInfo.id,
       });
     }
