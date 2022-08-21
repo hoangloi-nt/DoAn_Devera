@@ -26,12 +26,12 @@ export default function Pagination(props) {
         {currentItems.map((product) => {
           return (
             <Card
-              to={"/buy/:" + product.id}
-              title={product.Name}
-              price={product.Price}
-              image={product.image}
-              address={product.createby.address}
-              creatorAva={product.createby.avatar}
+              to={`/buy/${product.id}`}
+              title={product?.Name}
+              price={product?.Price}
+              image={product?.image}
+              address={product?.createby?.address}
+              avatar={product?.createby?.avatar}
             ></Card>
           );
         })}
