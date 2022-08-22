@@ -1,17 +1,20 @@
+import axios from "axios";
 import { Button } from "components/button";
+import { useAuth } from "components/contexts/auth-context";
+import { TopCreators } from "components/creator";
 import { ImageUpload } from "components/img";
+import Input from "components/input/Input";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Input from "../components/input/Input";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { TopCreators } from "components/creator";
-import { useAuth } from "components/contexts/auth-context";
-import axios from "axios";
-import { transfer } from "sdk/iconSDK";
 import Swal from "sweetalert2";
 
-const CreatePage = () => {
+const UpdateProduct = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(null);
+  const [oldImage, setOldImage] = useState("");
   const { userInfo } = useAuth();
 
   const { control, setValue, handleSubmit, reset } = useForm({
@@ -25,74 +28,64 @@ const CreatePage = () => {
     },
   });
 
-  const createNFT = async (values) => {
-    console.log(values);
-    const tax = (Number(values.price) * 2) / 100;
-    console.log("tax", tax);
-
-    Swal.fire(
-      "Product Creation Fee",
-      `Your fee to create this product is ${tax}`,
-      "question"
-    );
-
-    const transferSuccess = await transfer({
-      to: "hxd9852eb7b8c16d76b5135b0b5e01dcc52725e8cd",
-      value: tax,
-    });
-    if (transferSuccess) {
-      handleCreateNFT(values, tax);
-    }
-  };
-
-  async function handleCreateNFT(values, tax) {
+  const updateNFT = async (values) => {
     try {
-      const response = await axios.post("http://localhost:1337/products", {
+      const response = await axios.put(`http://localhost:1337/products/${id}`, {
         Name: values.name,
         Price: values.price,
         Category: values.category,
         image: values.image,
-        createby: {
-          Wallet: `${Number(userInfo.price) - tax}`,
-          ...values.createby,
-        },
       });
       console.log(response);
-      reset({
-        name: "",
-        price: "",
-        image: "",
-        category: "",
-        createby: "",
-      });
       setSelectedImage(null);
-      toast.success("Create NFT successfully!");
+      toast.success("Update NFT successfully!");
     } catch (error) {
       console.log(error);
       toast.error(error.message);
       setSelectedImage(null);
     }
-  }
+  };
+
+  //   useEffect(() => {
+  //     if (!userInfo.address) return;
+  //     async function fetchUserData() {
+  //       setValue("createby", {
+  //         Address: userInfo.address,
+  //         Avatar: userInfo.avatar,
+  //         Name: userInfo.name,
+  //         id: userInfo.id,
+  //       });
+  //     }
+  //     fetchUserData();
+  //   }, [
+  //     setValue,
+  //     userInfo.address,
+  //     userInfo.avatar,
+  //     userInfo.id,
+  //     userInfo.name,
+  //     userInfo.price,
+  //   ]);
 
   useEffect(() => {
-    if (!userInfo.address) return;
-    async function fetchUserData() {
-      setValue("createby", {
-        Address: userInfo.address,
-        Avatar: userInfo.avatar,
-        Name: userInfo.name,
-        id: userInfo.id,
-      });
+    async function fetchData() {
+      try {
+        const response = await axios.get(
+          `http://localhost:1337/products/${id}`
+        );
+        console.log(response.data);
+        reset({
+          name: response.data.Name,
+          price: response.data.Price,
+          category: response.data.Category,
+          image: response.data.image,
+        });
+        setOldImage(response.data.image);
+      } catch (error) {
+        console.log(error);
+      }
     }
-    fetchUserData();
-  }, [
-    setValue,
-    userInfo.address,
-    userInfo.avatar,
-    userInfo.id,
-    userInfo.name,
-    userInfo.price,
-  ]);
+    fetchData();
+  }, [id, reset, selectedImage]);
 
   const handleSelectImage = async (e) => {
     const file = e.target.files[0];
@@ -115,10 +108,35 @@ const CreatePage = () => {
     setSelectedImage(null);
   };
 
+  async function deleteNFT(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:1337/products/${id}`)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        Swal.fire("Deleted!", "Your product has been deleted.", "success");
+        navigate("/");
+      }
+    });
+  }
+
   return (
     <div className="container">
-      <div className="text-3xl mt-10 mb-10 mx-auto text-center">Create NFT</div>
-      <form onSubmit={handleSubmit(createNFT)}>
+      <div className="text-3xl mt-10 mb-10 mx-auto text-center">Update NFT</div>
+      <form onSubmit={handleSubmit(updateNFT)}>
         <div className="flex gap-x-10 justify-center">
           <div className="flex flex-col gap-y-5 min-w-[500px]">
             <div>
@@ -133,7 +151,7 @@ const CreatePage = () => {
               ></Input>
             </div>
             <div>
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">Price (ICX)</label>
               <Input
                 id="price"
                 name="price"
@@ -162,18 +180,24 @@ const CreatePage = () => {
               image={selectedImage}
               onChange={handleSelectImage}
               handleDeleteImage={handleDeleteImage}
-              required
+              oldImage={oldImage}
             ></ImageUpload>
           </div>
         </div>
-        <Button
-          type="submit"
-          kind="primary"
-          className="mx-auto mt-10"
-          width="200px"
-        >
-          Create
-        </Button>
+        <div className="flex justify-center items-center gap-x-5">
+          <Button
+            type="button"
+            kind="primary"
+            className="mt-10"
+            width="200px"
+            onClick={() => deleteNFT(id)}
+          >
+            Delete
+          </Button>
+          <Button type="submit" kind="primary" className="mt-10" width="200px">
+            Update
+          </Button>
+        </div>
       </form>
       <div className="border-t border-t-zinc-400 border-opacity-20 py-10 mt-20">
         <TopCreators></TopCreators>
@@ -182,4 +206,4 @@ const CreatePage = () => {
   );
 };
 
-export default CreatePage;
+export default UpdateProduct;

@@ -181,7 +181,6 @@ const ProfilePage = () => {
               onChange={handleSelectImage}
               handleDeleteImage={handleDeleteImage}
               avatar={avatar}
-              // required
             ></ImageUpload>
           </div>
         </div>
