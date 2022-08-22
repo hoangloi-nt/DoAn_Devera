@@ -45,6 +45,7 @@ const BuyPage = () => {
       }
     }
     fetchProductData();
+    document.body.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [nftId]);
 
   async function updateProduct(id, data) {
@@ -87,7 +88,7 @@ const BuyPage = () => {
       <div className="flex flex-col items-center justify-center mt-3">
         <div className="mb-4 heading-text">Buy now!</div>
         <Card
-          to={"/"}
+          to={"#"}
           image={productData?.image}
           title={productData?.Name}
           address={productData?.createby?.address}
@@ -116,8 +117,17 @@ const BuyPage = () => {
               </Button>
             )}
         {checkUser && (
-          <div className="font-bold px-3 py-2 rounded-lg bg-red-400">
-            This is your product, you can't buy it!
+          <div className="flex justify-center items-center gap-3 flex-col">
+            <span className="font-bold px-3 py-2 rounded-lg bg-red-400">
+              This is your product, you can't buy it!
+            </span>
+            <Button
+              type="button"
+              kind="primary"
+              to={`/update/${productData.id}`}
+            >
+              Update product
+            </Button>
           </div>
         )}
       </div>

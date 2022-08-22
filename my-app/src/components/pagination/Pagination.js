@@ -3,11 +3,11 @@ import ReactPaginate from "react-paginate";
 import { Card } from "../card";
 
 export default function Pagination(props) {
-  const { items } = props;
+  const { items, className = "", amount } = props;
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 8;
+  const itemsPerPage = amount || 8;
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -22,11 +22,13 @@ export default function Pagination(props) {
 
   const Product = () => {
     return (
-      <div className="grid grid-cols-4 mx-auto gap-x-10 gap-y-12">
+      <div
+        className={`grid grid-cols-4 mx-auto gap-x-10 gap-y-12 ${className}`}
+      >
         {currentItems.map((product) => {
-          console.log(product);
           return (
             <Card
+              key={product.id}
               to={`/buy/${product.id}`}
               title={product?.Name}
               price={product?.Price}
@@ -38,12 +40,10 @@ export default function Pagination(props) {
         })}
       </div>
     );
-  }
+  };
 
   if (items.length <= itemsPerPage) {
-    return (
-      <Product />
-    )
+    return <Product />;
   }
 
   return (

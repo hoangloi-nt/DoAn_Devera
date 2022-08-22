@@ -2,6 +2,7 @@ import axios from "axios";
 import { ArtistCard } from "components/artist-card";
 import { Card } from "components/card";
 import { useAuth } from "components/contexts/auth-context";
+import { Pagination } from "components/pagination";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -19,11 +20,18 @@ const ArtistDetailPage = () => {
         `http://localhost:1337/creators/${params.id}`
       );
       setCreatorInfo(response.data);
-      setProducts(response.data.create);
+      const results = [];
+      const response2 = await axios.get(`http://localhost:1337/products/`);
+      response2.data.forEach((item) => {
+        if (item.createby.id === creatorInfo.id) {
+          results.push(item);
+        }
+      });
+
+      setProducts(results);
     }
     fetchData();
-  }, [params.id]);
-  console.log(products);
+  }, [creatorInfo.id, params.id]);
   return (
     <div className="my-10 mx-auto">
       <h1 className="font-semibold !text-center text-xl mb-10">
@@ -39,18 +47,12 @@ const ArtistDetailPage = () => {
             isYou={creatorInfo.id === userInfo.id}
           ></ArtistCard>
         </div>
-        <div className="flex-1 gap-4 flex-wrap flex">
-          {products.map((item) => (
-            <Card
-              key={item.id}
-              to={`/buy/${item.id}`}
-              title={item.Name}
-              image={item.image}
-              price={item.Price}
-              address={creatorInfo.address}
-              avatar={creatorInfo.avatar}
-            ></Card>
-          ))}
+        <div className="flex-1">
+          <Pagination
+            items={products}
+            className="!grid-cols-3 !gap-4"
+            amount={9}
+          ></Pagination>
         </div>
       </div>
     </div>

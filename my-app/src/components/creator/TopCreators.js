@@ -18,18 +18,14 @@ const ListCreator = styled.div`
   gap: 30px 11px;
 `;
 
-
 const TopCreators = () => {
-
   const [creators, setCreators] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:1337/creators")
-      .then((res) => {
-        setCreators(res.data);
-        console.log(res.data);
-      });
+    axios.get("http://localhost:1337/creators").then((res) => {
+      setCreators(res.data);
+      console.log(res.data);
+    });
   }, []);
 
   return (
@@ -39,6 +35,7 @@ const TopCreators = () => {
         {creators.map((creator) => {
           return (
             <Creator
+              key={creator?.id}
               to={"/"}
               address={creator?.address}
               avatar={creator?.avatar}
