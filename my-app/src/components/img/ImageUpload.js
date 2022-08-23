@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import ImgUpload from "../../assets/img/image-removebg-preview.png";
+import { useTranslation } from "react-i18next";
 
 const ImageUpload = (props) => {
   const {
@@ -13,6 +14,7 @@ const ImageUpload = (props) => {
     ...rest
   } = props;
 
+  const { t } = useTranslation();
   return (
     <>
       <label
@@ -26,14 +28,14 @@ const ImageUpload = (props) => {
               alt="upload-img"
               className="max-w-[80px] mb-5"
             />
-            <p className="font-semibold">Upload</p>
+            <p className="font-semibold">{t("upload")}</p>
             <div className="mt-3 font-sans text-xs">
               {avatar ? (
                 "Choose your new avatar."
               ) : (
                 <div>
-                  Upload your work, customize your <br></br> NFTs with
-                  properties, stats, and <br></br>unlockable content.
+                  {t("img-text1")} <br></br> {t("img-text2")} <br></br>
+                  {t("img-text3")}
                 </div>
               )}
             </div>
@@ -42,8 +44,8 @@ const ImageUpload = (props) => {
         {avatar && !image && (
           <div className="flex flex-col items-center text-center pointer-events-none">
             <img src={avatar} alt="upload-img" className="max-w-[100px] mb-5" />
-            <p className="font-semibold">Upload</p>
-            <p className="mt-3 font-sans text-xs">"Choose your new avatar."</p>
+            <p className="font-semibold">{t("upload")}</p>
+            <p className="mt-3 font-sans text-xs">{t("img-avatar")}</p>
           </div>
         )}
 

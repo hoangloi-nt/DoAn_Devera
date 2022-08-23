@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { Button } from "../button";
 import Creator from "./Creator";
@@ -19,6 +20,7 @@ const ListCreator = styled.div`
 `;
 
 const TopCreators = () => {
+  const { t } = useTranslation();
   const [creators, setCreators] = useState([]);
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const TopCreators = () => {
 
   return (
     <Container>
-      <h1 className="heading-text">Top Creators of the week</h1>
+      <h1 className="heading-text">{t("topCreators.title")}</h1>
       <ListCreator>
         {creators.map((creator) => {
           return (
@@ -45,7 +47,7 @@ const TopCreators = () => {
         })}
       </ListCreator>
       <Button width={"142px"} height={"39px"} kind="secondary">
-        Watch Video
+        {t("topCreators.watch")}
       </Button>
     </Container>
   );

@@ -9,8 +9,11 @@ import { useAuth } from "components/contexts/auth-context";
 import axios from "axios";
 import { transfer } from "sdk/iconSDK";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 
 const CreatePage = () => {
+  const { t } = useTranslation();
+
   const [selectedImage, setSelectedImage] = useState(null);
   const { userInfo } = useAuth();
 
@@ -31,8 +34,8 @@ const CreatePage = () => {
     console.log("tax", tax);
 
     Swal.fire(
-      "Product Creation Fee",
-      `Your fee to create this product is ${tax}`,
+      t("createPage.tax1"),
+      `${t("createPage.tax2")} ${tax}`,
       "question"
     );
 
@@ -66,7 +69,7 @@ const CreatePage = () => {
         createby: "",
       });
       setSelectedImage(null);
-      toast.success("Create NFT successfully!");
+      toast.success(t("createPage.succes"));
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -97,6 +100,7 @@ const CreatePage = () => {
   const handleSelectImage = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
+    setTime(2500);
     setSelectedImage(file);
     const bodyFormData = new FormData();
     bodyFormData.append("image", file);
@@ -115,14 +119,41 @@ const CreatePage = () => {
     setSelectedImage(null);
   };
 
+  const setTime = (time) => {
+    let timerInterval;
+    Swal.fire({
+      title: t("createPage.time1"),
+      html: `${t("createPage.time2")} <b></b> milliseconds.`,
+      timer: time,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const b = Swal.getHtmlContainer().querySelector("b");
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft();
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
+  };
+
   return (
     <div className="container">
-      <div className="text-3xl mt-10 mb-10 mx-auto text-center">Create NFT</div>
+      <div className="text-3xl mt-10 mb-10 mx-auto text-center">
+        {t("createPage.title")}
+      </div>
       <form onSubmit={handleSubmit(createNFT)}>
         <div className="flex gap-x-10 justify-center">
           <div className="flex flex-col gap-y-5 min-w-[500px]">
             <div>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">{t("name")}</label>
               <Input
                 id="name"
                 name="name"
@@ -133,7 +164,7 @@ const CreatePage = () => {
               ></Input>
             </div>
             <div>
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">{t("createPage.price")}</label>
               <Input
                 id="price"
                 name="price"
@@ -145,7 +176,7 @@ const CreatePage = () => {
               ></Input>
             </div>
             <div>
-              <label htmlFor="category">Category</label>
+              <label htmlFor="category">{t("createPage.category")}</label>
               <Input
                 id="category"
                 name="category"
@@ -172,7 +203,7 @@ const CreatePage = () => {
           className="mx-auto mt-10"
           width="200px"
         >
-          Create
+          {t("createPage.createBtn")}
         </Button>
       </form>
       <div className="border-t border-t-zinc-400 border-opacity-20 py-10 mt-20">
