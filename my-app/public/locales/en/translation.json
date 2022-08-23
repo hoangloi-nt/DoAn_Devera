@@ -104,5 +104,7 @@
   "topCreators": {
     "title": "Top Creators of the week",
     "watch": "Watch Video"
-  }
+  },
+
+  "productSearch": "Products"
 }

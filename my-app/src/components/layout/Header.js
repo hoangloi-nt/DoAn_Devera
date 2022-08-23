@@ -14,8 +14,6 @@ import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 import Search from "./search/Search";
 
-
-
 const Header = () => {
   const { t, i18n } = useTranslation();
   const [address, setAddress] = useState(localStorage.getItem("address"));
@@ -127,7 +125,6 @@ const Header = () => {
           </li>
         ))}
       </ul>
-
 
       <Search />
 

@@ -38,7 +38,7 @@ const HomePage = () => {
           <Button kind="primary" height={"56px"} width={"300px"}>
             {t("homepage.mainBtn")}
           </Button>
-          <div className="flex items-center justify-between mt-10">
+          <div className="flex items-center gap-x-48 mt-10">
             <div>
               <div className="text-5xl font-bold">{products}</div>
               <div>NFTs</div>
