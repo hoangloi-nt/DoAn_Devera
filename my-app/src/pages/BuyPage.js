@@ -8,7 +8,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { transfer } from "sdk/iconSDK.js";
 import { useAuth } from "components/contexts/auth-context";
+import { useTranslation } from "react-i18next";
 const BuyPage = () => {
+  const { t } = useTranslation();
   const { nftId } = useParams();
   const [productData, setProductData] = useState({});
   const [listProductData, setListProductData] = useState([]);
@@ -53,10 +55,10 @@ const BuyPage = () => {
       await axios.put(`http://localhost:1337/products/${id}`, {
         boughtby: data,
       });
-      toast.success("Buy success");
+      toast.success(t("buyPage.succes"));
     } catch (error) {
       console.log(error);
-      toast.error("Buy failed!", error.message);
+      toast.error(t("buyPage.fail"), error.message);
     }
   }
   const creatorId = productData?.createby?.id;
@@ -86,7 +88,7 @@ const BuyPage = () => {
   return (
     <div className="container ">
       <div className="flex flex-col items-center justify-center mt-3">
-        <div className="mb-4 heading-text">Buy now!</div>
+        <div className="mb-4 heading-text">{t("buyPage.title")}</div>
         <Card
           to={"#"}
           image={productData?.image}
@@ -95,11 +97,11 @@ const BuyPage = () => {
           price={productData?.Price}
           avatar={productData?.createby?.avatar}
         ></Card>
-        <div className="my-6 message-text">Hurry up, you will be late!</div>
+        <div className="my-6 message-text">{t("buyPage.desc")}</div>
         {sold
           ? !checkUser && (
               <Button kind="primary" width={"183px"} disabled>
-                Sold out
+                {t("buyPage.soldOut")}
               </Button>
             )
           : !checkUser && (
@@ -113,26 +115,26 @@ const BuyPage = () => {
                   )
                 }
               >
-                Buy
+                {t("buyPage.buy")}
               </Button>
             )}
         {checkUser && (
           <div className="flex justify-center items-center gap-3 flex-col">
             <span className="font-bold px-3 py-2 rounded-lg bg-red-400">
-              This is your product, you can't buy it!
+              {t("buyPage.noBuy")}
             </span>
             <Button
               type="button"
               kind="primary"
               to={`/update/${productData.id}`}
             >
-              Update product
+              {t("buyPage.updateBtn")}
             </Button>
           </div>
         )}
       </div>
       <div className="flex flex-col justify-center my-4">
-        <div className="mb-6 text-left heading-text">More from this user</div>
+        <div className="mb-6 text-left heading-text">{t("buyPage.more")}</div>
         <div className="grid grid-cols-4 gap-10 mx-auto">
           {listProductData.slice(0, 8).map((item) => (
             <Card
@@ -148,7 +150,7 @@ const BuyPage = () => {
         </div>
         {listProductData.length > 8 ? (
           <NavLink className={"text-right my-3"} to={"/"}>
-            View all...{" "}
+            {t("buyPage.viewAll")}
           </NavLink>
         ) : (
           <></>

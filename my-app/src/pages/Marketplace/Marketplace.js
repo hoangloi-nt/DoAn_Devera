@@ -1,17 +1,18 @@
 import { Category } from "components/category";
 import { Heading } from "components/heading";
-import { Pagination } from "components/pagination";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const Marketplace = () => {
+  const { t } = useTranslation();
   useEffect(() => {
     document.title = "Marketplace";
   }, []);
   return (
     <div className="container">
       <Heading
-        title="Marketplace"
-        desc="You can view and buy the products on display here."
+        title={t("marketplace")}
+        desc={t("marketplacePage.text1")}
       ></Heading>
       <div className="flex flex-col justify-center  my-10 pt-10">
         <Category />

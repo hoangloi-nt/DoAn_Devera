@@ -1,8 +1,11 @@
 import { Button } from "components/button";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { hashShortener } from "sdk/iconSDK";
 
 const artistCard = ({ to, name, address, avatar, products, isYou }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { t } = useTranslation();
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
@@ -21,7 +24,7 @@ const artistCard = ({ to, name, address, avatar, products, isYou }) => {
               <span className="text-xl font-semibold">{name}</span>
               {isYou && (
                 <div className="font-semibold text-white bg-green-500 px-3 py-2 rounded-xl">
-                  You
+                  {t("artistPage.you")}
                 </div>
               )}
             </div>
@@ -39,9 +42,10 @@ const artistCard = ({ to, name, address, avatar, products, isYou }) => {
             />
             <div className=" flex justify-center items-center gap-x-3">
               <span>
-                Name: <strong>{name}</strong> <br></br>
-                Address: <strong>{hashShortener(address)}</strong> <br></br>
-                Products: <strong>{products}</strong> <br></br>
+                {t("name")}: <strong>{name}</strong> <br></br>
+                {t("address")}: <strong>{hashShortener(address)}</strong>{" "}
+                <br></br>
+                {t("products")}: <strong>{products}</strong> <br></br>
               </span>
             </div>
             <div className="flex justify-center items-center flex-col gap-y-4">
@@ -53,7 +57,7 @@ const artistCard = ({ to, name, address, avatar, products, isYou }) => {
                   height={"36px"}
                   to={"/profile"}
                 >
-                  Update info
+                  {t("artistPage.updateBtn")}
                 </Button>
               )}
 
@@ -65,7 +69,7 @@ const artistCard = ({ to, name, address, avatar, products, isYou }) => {
                   height={"36px"}
                   to={to}
                 >
-                  View products
+                  {t("artistPage.viewBtn")}
                 </Button>
               )}
             </div>

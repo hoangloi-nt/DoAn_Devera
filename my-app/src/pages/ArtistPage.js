@@ -5,8 +5,10 @@ import { Heading } from "components/heading";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ArtistPage = () => {
+  const { t } = useTranslation();
   const { userInfo } = useAuth();
   const [listCreators, setListCreators] = useState([]);
 
@@ -30,10 +32,7 @@ const ArtistPage = () => {
 
   return (
     <div className="container">
-      <Heading
-        title="Artist Page"
-        desc="See the artists information on this page."
-      ></Heading>
+      <Heading title={t("artist")} desc={t("artistPage.text1")}></Heading>
       <div className="my-20 grid sm:grid-cols-4 grid-cols-2 gap-10">
         <ArtistCard
           name={userInfo.name}
@@ -52,6 +51,7 @@ const ArtistPage = () => {
             products={item?.create?.length}
             isYou={false}
             to={`/artist/${item.id}`}
+            t={t}
           ></ArtistCard>
         ))}
       </div>

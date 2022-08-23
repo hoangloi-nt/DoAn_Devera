@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useAuth } from "components/contexts/auth-context";
-import { Card } from "components/card";
 import { Button } from "components/button";
 import { Heading } from "components/heading";
 import { Pagination } from "components/pagination";
+import { useTranslation } from "react-i18next";
 const Collection = () => {
+  const { t } = useTranslation();
   const [productList, setProductList] = useState([]);
   const { userInfo } = useAuth();
   const [option, setOption] = useState("create");
@@ -33,7 +34,7 @@ const Collection = () => {
   }, []);
   return (
     <div className="container ">
-      <Heading title="Your Collection"></Heading>
+      <Heading title={t("collectionPage.title")}></Heading>
       <div className="flex flex-col justify-center my-4 mt-10 ">
         <div className="flex option">
           <Button
@@ -43,7 +44,7 @@ const Collection = () => {
             kind={"secondary"}
             width="180px"
           >
-            Created Product
+            {t("collectionPage.created")}
           </Button>
           <Button
             className="mb-6 ml-10"
@@ -52,7 +53,7 @@ const Collection = () => {
             kind={"secondary"}
             width="180px"
           >
-            Buy Product
+            {t("collectionPage.buy")}
           </Button>
         </div>
         {option === "create" ? (
@@ -60,15 +61,13 @@ const Collection = () => {
             <Pagination items={createProduct}></Pagination>
           ) : (
             <div className="my-12 heading-text">
-              You have not created any products yet
+              {t("collectionPage.text1")}
             </div>
           )
         ) : buyProduct.length !== 0 ? (
           <Pagination items={buyProduct}></Pagination>
         ) : (
-          <div className="my-12 heading-text">
-            You have not purchased any products yet
-          </div>
+          <div className="my-12 heading-text">{t("collectionPage.text2")}</div>
         )}
       </div>
     </div>

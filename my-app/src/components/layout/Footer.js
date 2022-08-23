@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 const FooterStyled = styled.div`
@@ -8,76 +9,77 @@ const FooterStyled = styled.div`
     margin-right: 16px;
   }
 `;
-const menuLinks = [
-  {
-    url: "/marketplace",
-    title: "Marketplace",
-    subMenuLinks: [
-      {
-        subUrl: "/",
-        subtitle: "Explore",
-      },
-      {
-        subUrl: "/",
-        subtitle: "NFTs",
-      },
-      {
-        subUrl: "/",
-        subtitle: "Collectibles",
-      },
-      {
-        subUrl: "/",
-        subtitle: "Virtual Reality",
-      },
-    ],
-  },
-  {
-    url: "/resources",
-    title: "Resources",
-    subMenuLinks: [
-      {
-        subUrl: "/",
-        subtitle: "Help Center",
-      },
-      {
-        subUrl: "/",
-        subtitle: "Partners",
-      },
-      {
-        subUrl: "/",
-        subtitle: "Blog",
-      },
-      {
-        subUrl: "/",
-        subtitle: "Newsletter",
-      },
-    ],
-  },
-  {
-    url: "/company",
-    title: "Company",
-    subMenuLinks: [
-      {
-        subUrl: "/",
-        subtitle: "About Us",
-      },
-      {
-        subUrl: "/",
-        subtitle: "Careers",
-      },
-      {
-        subUrl: "/",
-        subtitle: "Support",
-      },
-      {
-        subUrl: "/",
-        subtitle: "Newsletter",
-      },
-    ],
-  },
-];
 
 const Footer = () => {
+  const { t } = useTranslation();
+  const menuLinks = [
+    {
+      url: "/marketplace",
+      title: t("marketplace"),
+      subMenuLinks: [
+        {
+          subUrl: "/",
+          subtitle: t("explore"),
+        },
+        {
+          subUrl: "/",
+          subtitle: "NFTs",
+        },
+        {
+          subUrl: "/",
+          subtitle: t("footer.collectibles"),
+        },
+        {
+          subUrl: "/",
+          subtitle: t("footer.vr"),
+        },
+      ],
+    },
+    {
+      url: "/resources",
+      title: t("footer.resources"),
+      subMenuLinks: [
+        {
+          subUrl: "/",
+          subtitle: t("footer.help"),
+        },
+        {
+          subUrl: "/",
+          subtitle: t("footer.partners"),
+        },
+        {
+          subUrl: "/",
+          subtitle: t("footer.blog"),
+        },
+        {
+          subUrl: "/",
+          subtitle: t("footer.newsletter"),
+        },
+      ],
+    },
+    {
+      url: "/company",
+      title: t("footer.company"),
+      subMenuLinks: [
+        {
+          subUrl: "/",
+          subtitle: t("footer.about"),
+        },
+        {
+          subUrl: "/",
+          subtitle: t("footer.careers"),
+        },
+        {
+          subUrl: "/",
+          subtitle: t("footer.support"),
+        },
+        {
+          subUrl: "/",
+          subtitle: t("footer.newsletter"),
+        },
+      ],
+    },
+  ];
   return (
     <FooterStyled className="!py-5 container">
       <div className="flex items-center justify-between">
@@ -90,7 +92,7 @@ const Footer = () => {
             />
           </NavLink>
           <div className="mb-6 text-base font-base" style={{ maxWidth: 400 }}>
-            Amazing NFTs marketplace, Authentic and unique digital creation.
+            {t("footer.footer-text1")}
           </div>
           <div className="flex social-icon ">
             <img alt="facebook" src={require("../../img/facebook.png")} />
@@ -123,10 +125,16 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex items-center justify-between mt-6 ">
-        <p className="text-sm font-medium text-[#545C71]">Copyright 2022 Devera, All right reserved.</p>
+        <p className="text-sm font-medium text-[#545C71]">
+          {t("footer.footer-text2")}
+        </p>
         <div className="flex gap-x-8">
-          <p className="text-sm font-medium text-[#545C71]">Privacy Policy</p>
-          <p className="text-sm font-medium text-[#545C71]">Terms & Conditions</p>
+          <p className="text-sm font-medium text-[#545C71]">
+            {t("footer.footer-text3")}
+          </p>
+          <p className="text-sm font-medium text-[#545C71]">
+            {t("footer.footer-text4")}
+          </p>
         </div>
       </div>
     </FooterStyled>
