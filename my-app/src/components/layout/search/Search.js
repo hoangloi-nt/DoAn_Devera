@@ -31,6 +31,7 @@ const Search = () => {
           const res = await request.get(`search/products`, {
             params: {
               Name_contains: debounced,
+              _limit: 5
             },
           });
           setSearchResult(res);
