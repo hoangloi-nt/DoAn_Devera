@@ -8,6 +8,8 @@ const WrapperStyle = styled.div`
   border-radius: 8px;
   background: #30384D;
   box-shadow: rgb(0 0 0 / 12%) 0 2px 12px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Wrapper = ({ children}) => {

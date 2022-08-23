@@ -105,3 +105,38 @@ a {
 .flip-card .back {
 	transform: rotateY(180deg);
 }
+
+
+.loading {
+	animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+	from {
+		transform: rotate(0);;
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+// Scrollbar
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #1c233d;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #30384D;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #6F5CF1;
+}
