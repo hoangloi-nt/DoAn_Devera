@@ -6,10 +6,12 @@ import { ImageUpload } from "components/img";
 import Input from "components/input/Input";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import copyToClipBoard from "utils/copyToClipBoard";
 
 const ProfilePage = () => {
+  const { t } = useTranslation();
   const { userInfo } = useAuth();
   const [selectedImage, setSelectedImage] = useState(null);
   const [avatar, setAvatar] = useState("");
@@ -128,12 +130,14 @@ const ProfilePage = () => {
 
   return (
     <div className="container">
-      <div className="text-3xl mt-10 mb-10 mx-auto text-center">Profile</div>
+      <div className="text-3xl mt-10 mb-10 mx-auto text-center">
+        {t("profile")}
+      </div>
       <form onSubmit={handleSubmit(updateProfile)}>
         <div className="flex gap-x-10 justify-center">
           <div className="flex flex-col gap-y-5 min-w-[500px]">
             <div>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">{t("name")}</label>
               <Input
                 id="name"
                 name="name"
@@ -143,7 +147,7 @@ const ProfilePage = () => {
               ></Input>
             </div>
             <div>
-              <label htmlFor="wallet">Wallet (ICX)</label>
+              <label htmlFor="wallet">{t("wallet")} (ICX)</label>
               <Input
                 id="wallet"
                 name="wallet"
@@ -153,7 +157,7 @@ const ProfilePage = () => {
               ></Input>
             </div>
             <div className="flex flex-col gap-y-2">
-              <label htmlFor="address">Address</label>
+              <label htmlFor="address">{t("address")}</label>
               <div className="flex justify-center items-center gap-x-2">
                 <Input
                   id="address"
@@ -190,7 +194,7 @@ const ProfilePage = () => {
           className="mx-auto mt-10"
           width="200px"
         >
-          Update
+          {t("artistPage.updateBtn")}
         </Button>
       </form>
     </div>

@@ -1,14 +1,17 @@
 import axios from "axios";
 import { ArtistCard } from "components/artist-card";
-import { Card } from "components/card";
 import { useAuth } from "components/contexts/auth-context";
 import { Pagination } from "components/pagination";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
 const ArtistDetailPage = () => {
+  let lang = JSON.parse(localStorage.getItem("language")) || [];
+  const { t } = useTranslation();
+  console.log(t);
   const { userInfo } = useAuth();
   const params = useParams();
   const [creatorInfo, setCreatorInfo] = useState({});
@@ -35,7 +38,11 @@ const ArtistDetailPage = () => {
   return (
     <div className="my-10 mx-auto">
       <h1 className="font-semibold !text-center text-xl mb-10">
-        {creatorInfo.Name}'s products collection
+        {lang === "en" ? (
+          <span>{creatorInfo.Name}'s products collection</span>
+        ) : (
+          <span>Bộ sưu tập của {creatorInfo.Name}</span>
+        )}
       </h1>
       <div className="container flex">
         <div className="flex-1 max-w-[320px]">

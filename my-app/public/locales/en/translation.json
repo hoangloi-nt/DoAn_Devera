@@ -1,0 +1,108 @@
+{
+  "explore": "Explore",
+  "changeName": "Change language",
+  "darkMode": "Dark mode",
+  "createNFT": "Create NFT",
+  "profile": "Profile",
+  "disconnect": "Disconnect",
+  "connect": "Connect",
+  "marketplace": "Marketplace",
+  "artist": "Artist",
+  "collection": "Collection",
+  "search": "Search...",
+
+  "disconnect-modal": {
+    "titleDisconnect": "Do you want to disconnect?",
+    "yesDisconnect": "Yes, disconnect!",
+    "noDisconnect": "Cancel",
+    "disconnect": "Disconnect!",
+    "textConfirm": "You have successfully disconnected!"
+  },
+
+  "homepage": {
+    "title1": "Discover, Sell",
+    "title2": "& Collect Rare NFTs",
+    "desc": "Digital marketplace for crypto collections and non-fungible tokens (NFTs)",
+    "mainBtn": "Discover now",
+    "artist": "Artist",
+    "hot": "Super Hot"
+  },
+
+  "footer": {
+    "collectibles": "Collectibles",
+    "vr": "Virtual Reality",
+    "resources": "Resources",
+    "help": "Help Center",
+    "partners": "Partners",
+    "blog": "Blog",
+    "newsletter": "Newsletter",
+    "company": "Company",
+    "about": "About Us",
+    "careers": "Careers",
+    "support": "Support",
+    "footer-text1": "Amazing NFTs marketplace, Authentic and unique digital creation.",
+    "footer-text2": "Copyright 2022 Devera, All right reserved.",
+    "footer-text3": "Privacy Policy",
+    "footer-text4": " Terms & Conditions"
+  },
+
+  "marketplacePage": {
+    "text1": "You can view and buy the products on display here."
+  },
+
+  "artistPage": {
+    "text1": "See the artists information on this page.",
+    "you": "You",
+    "updateBtn": "Update info",
+    "viewBtn": " View products"
+  },
+
+  "name": "Name",
+  "address": "Address",
+  "products": "Products",
+  "created": "Created by",
+  "wallet": "Wallet",
+  "upload": "Upload",
+  "img-text1": "Upload your work, customize your",
+  "img-text2": "NFTs with properties, stats, and",
+  "img-text3": "unlockable content",
+  "img-avatar": "Choose your new avatar.",
+
+  "collectionPage": {
+    "title": "Your Collection",
+    "created": "Created Product",
+    "buy": "Bought Product",
+    "text1": "You have not created any products yet",
+    "text2": "You have not purchased any products yet"
+  },
+
+  "buyPage": {
+    "title": "Buy now!",
+    "desc": "Hurry up, you will be late!",
+    "updateBtn": "Update product",
+    "noBuy": "This is your product, you can't buy it!",
+    "soldOut": "Sold out",
+    "buy": "Buy",
+    "more": "More from this user",
+    "viewAll": "View all...",
+    "succes": "Buy success",
+    "fail": "Buy failed!"
+  },
+
+  "createPage": {
+    "title": "Create NFT",
+    "price": "Price",
+    "category": "Category",
+    "createBtn": "Create",
+    "tax1": "Product Creation Fee",
+    "tax2": "Your fee to create this product is",
+    "succes": "Create NFT successfully!",
+    "time1": "Upload image!",
+    "time2": "I will close in"
+  },
+
+  "topCreators": {
+    "title": "Top Creators of the week",
+    "watch": "Watch Video"
+  }
+}

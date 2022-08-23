@@ -1,8 +1,10 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { hashShortener } from "sdk/iconSDK";
 
 const Card = ({ to, title, image, price, address, avatar }) => {
+  const { t } = useTranslation();
   return (
     <NavLink to={to}>
       <div className="w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all">
@@ -18,9 +20,7 @@ const Card = ({ to, title, image, price, address, avatar }) => {
           <div className="leading-none">
             <span className="text-sm">{title}</span> <br></br>
             <span className="text-xs">
-
-              Created by <strong> {hashShortener(address)}</strong>
-
+              {t("created")} <strong> {hashShortener(address)}</strong>
             </span>
           </div>
           <img

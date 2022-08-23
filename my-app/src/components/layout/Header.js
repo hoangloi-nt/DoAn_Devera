@@ -11,28 +11,13 @@ import useClickOutSide from "../../hooks/useClickOutSide";
 import { useEffect } from "react";
 import { useAuth } from "components/contexts/auth-context";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 import Search from "./search/Search";
 
-const menuLinks = [
-  {
-    url: "/",
-    title: "Explore",
-  },
-  {
-    url: "/marketplace",
-    title: "Marketplace",
-  },
-  {
-    url: "/artist",
-    title: "Artist",
-  },
-  {
-    url: "/collection",
-    title: "Collection",
-  },
-];
+
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
   const [address, setAddress] = useState(localStorage.getItem("address"));
   const { show, setShow, nodeRef } = useClickOutSide();
   const [price, setPrice] = useState("");
@@ -49,26 +34,79 @@ const Header = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // let language = JSON.parse(localStorage.getItem("language")) || [];
   const disConnectHandle = () => {
     Swal.fire({
-      title: "Do you want to disconnect?",
+      title: t("disconnect-modal.titleDisconnect"),
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, disconnect!",
+      cancelButtonText: t("disconnect-modal.noDisconnect"),
+      confirmButtonText: t("disconnect-modal.yesDisconnect"),
     }).then((result) => {
       if (result.isConfirmed) {
         disConnect(setAddress);
         navigate("/");
         Swal.fire(
-          "Disconnect!",
-          "You have successfully disconnected!",
+          t("disconnect-modal.disconnect"),
+          t("disconnect-modal.textConfirm"),
           "success"
         );
       }
     });
   };
+
+  const handleChangeLanguage = async () => {
+    const inputOptions = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          en: "English",
+          vn: "Vietnamese",
+        });
+      }, 500);
+    });
+
+    const { value: lang } = await Swal.fire({
+      title: "Select language",
+      input: "radio",
+      inputValue: "en",
+      inputOptions: inputOptions,
+      inputValidator: (value) => {
+        if (!value) {
+          return "You need to choose something!";
+        }
+      },
+    });
+
+    if (lang) {
+      Swal.fire({
+        html: `You selected: ${lang === "en" ? "English" : "Vietnamese"}`,
+      });
+    }
+
+    i18n.changeLanguage(lang);
+    localStorage && localStorage.setItem("language", JSON.stringify(lang));
+  };
+
+  const menuLinks = [
+    {
+      url: "/",
+      title: t("explore"),
+    },
+    {
+      url: "/marketplace",
+      title: t("marketplace"),
+    },
+    {
+      url: "/artist",
+      title: t("artist"),
+    },
+    {
+      url: "/collection",
+      title: t("collection"),
+    },
+  ];
 
   return (
     <header className="!py-5 container flex items-center gap-x-10">
@@ -89,6 +127,7 @@ const Header = () => {
           </li>
         ))}
       </ul>
+
 
       <Search />
 
@@ -114,24 +153,27 @@ const Header = () => {
               <div className="text-white font-medium">{price} ICX</div>
               {show && (
                 <div className="absolute flex justify-center items-start flex-col bg-white w-[200px] rounded-lg overflow-hidden translate-y-2 z-10">
-                  <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full ">
-                    Change language
+                  <span
+                    className="p-3 hover:bg-slate-500 hover:text-white hover:w-full "
+                    onClick={handleChangeLanguage}
+                  >
+                    {t("changeName")}
                   </span>
                   <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full">
-                    Dark mode
+                    {t("darkMode")}
                   </span>
                   <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full">
-                    <NavLink to={"/create"}>Create NFT</NavLink>
+                    <NavLink to={"/create"}>{t("createNFT")}</NavLink>
                   </span>
                   <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full">
-                    <NavLink to={"/profile"}>Profile</NavLink>
+                    <NavLink to={"/profile"}>{t("profile")}</NavLink>
                   </span>
                   <Button
                     kind="primary"
                     className="w-full !rounded-tl-none !rounded-tr-none text-white"
                     onClick={disConnectHandle}
                   >
-                    Disconnect
+                    {t("disconnect")}
                   </Button>
                 </div>
               )}
@@ -143,7 +185,7 @@ const Header = () => {
             className="w-[200px]"
             onClick={() => connectWallet(setAddress)}
           >
-            Connect
+            {t("connect")}
           </Button>
         )}
       </div>
