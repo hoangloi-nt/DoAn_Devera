@@ -4,10 +4,11 @@ import { NavLink } from "react-router-dom";
 import { hashShortener } from "sdk/iconSDK";
 
 const Card = ({ to, title, image, price, address, avatar }) => {
+
   const { t } = useTranslation();
   return (
     <NavLink to={to}>
-      <div className="w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all">
+      <div className="card w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all">
         <img
           src={
             image ||
@@ -39,6 +40,7 @@ const Card = ({ to, title, image, price, address, avatar }) => {
       </div>
     </NavLink>
   );
+
 };
 
 export default Card;

@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "../button";
+import { DarkMode } from "../DarkMode";
 import {
-  connectWallet,
-  hashShortener,
-  disConnect,
-  getBalance,
+	connectWallet,
+	hashShortener,
+	disConnect,
+	getBalance,
 } from "../../sdk/iconSDK.js";
 import useClickOutSide from "../../hooks/useClickOutSide";
 import { useEffect } from "react";
 import { useAuth } from "components/contexts/auth-context";
 import Swal from "sweetalert2";
+
 import { useTranslation } from "react-i18next";
 import Search from "./search/Search";
 
@@ -21,16 +23,39 @@ const Header = () => {
   const [price, setPrice] = useState("");
   const navigate = useNavigate();
 
-  const { userInfo } = useAuth();
 
-  useEffect(() => {
-    async function getPrice() {
-      const price = await getBalance(address);
-      setPrice(price);
-    }
-    getPrice();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+	const { userInfo } = useAuth();
+	document.body.classList.add(localStorage.getItem("theme"));
+	useEffect(() => {
+		async function getPrice() {
+			const price = await getBalance(address);
+			setPrice(price);
+		}
+		getPrice();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const disConnectHandle = () => {
+		Swal.fire({
+			title: "Do you want to disconnect?",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, disconnect!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				disConnect(setAddress);
+				navigate("/");
+				Swal.fire(
+					"Disconnect!",
+					"You have successfully disconnected!",
+					"success",
+				);
+			}
+		});
+	};
+
 
   // let language = JSON.parse(localStorage.getItem("language")) || [];
   const disConnectHandle = () => {
@@ -151,18 +176,18 @@ const Header = () => {
               {show && (
                 <div className="absolute flex justify-center items-start flex-col bg-white w-[200px] rounded-lg overflow-hidden translate-y-2 z-10">
                   <span
-                    className="p-3 hover:bg-slate-500 hover:text-white hover:w-full "
+                    className="p-3 hover:bg-slate-500 hover:text-white w-full "
                     onClick={handleChangeLanguage}
                   >
                     {t("changeName")}
                   </span>
-                  <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full">
-                    {t("darkMode")}
-                  </span>
-                  <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full">
+                  	<div className="w-full p-3 hover:bg-slate-500 hover:text-white">
+										<DarkMode />
+									</div>
+                  <span className="p-3 hover:bg-slate-500 hover:text-white w-full">
                     <NavLink to={"/create"}>{t("createNFT")}</NavLink>
                   </span>
-                  <span className="p-3 hover:bg-slate-500 hover:text-white hover:w-full">
+                  <span className="p-3 hover:bg-slate-500 hover:text-white w-full">
                     <NavLink to={"/profile"}>{t("profile")}</NavLink>
                   </span>
                   <Button
@@ -188,6 +213,7 @@ const Header = () => {
       </div>
     </header>
   );
+
 };
 
 export default Header;

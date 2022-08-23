@@ -4,13 +4,14 @@ import { useTranslation } from "react-i18next";
 import { hashShortener } from "sdk/iconSDK";
 
 const artistCard = ({ to, name, address, avatar, products, isYou }) => {
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { t } = useTranslation();
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
         <div className="front">
-          <div className="w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all flex flex-col justify-center items-center gap-y-10">
+          <div className="card w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all flex flex-col justify-center items-center gap-y-10">
             <img
               src={
                 avatar ||
@@ -31,7 +32,7 @@ const artistCard = ({ to, name, address, avatar, products, isYou }) => {
           </div>
         </div>
         <div className="back">
-          <div className="w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all flex flex-col justify-center items-center gap-y-5">
+          <div className="card w-[282px] h-[323px] bg-[#30384D] rounded-lg hover:-translate-y-1 transition-all flex flex-col justify-center items-center gap-y-5">
             <img
               src={
                 avatar ||
@@ -78,6 +79,7 @@ const artistCard = ({ to, name, address, avatar, products, isYou }) => {
       </div>
     </div>
   );
+
 };
 
 export default artistCard;

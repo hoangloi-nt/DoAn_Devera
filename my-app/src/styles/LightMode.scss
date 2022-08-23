@@ -1,0 +1,31 @@
+body.light {
+	background-color: #8599cd;
+}
+
+.light {
+	color: #000;
+	& .card {
+		background-color: #aeb9d5;
+	}
+	& .page-num {
+		border-color: #1039a3;
+		color: #000;
+	}
+	& .page-active,
+	.page-num:hover {
+		color: #fff;
+		background-color: #5b73b3;
+	}
+	& .button-component[kind="secondary"] {
+		background-color: #aeb9d5;
+		color: #000;
+	}
+	& .button-component[kind="secondary"]:hover {
+		background-color: #30384d;
+		color: #fff;
+	}
+	& .button-component.active {
+		background-color: #30384d;
+		color: #fff;
+	}
+}
