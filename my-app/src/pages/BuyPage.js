@@ -10,6 +10,7 @@ import { transfer } from "sdk/iconSDK.js";
 import { useAuth } from "components/contexts/auth-context";
 import { useTranslation } from "react-i18next";
 const BuyPage = () => {
+
   const { t } = useTranslation();
   const { nftId } = useParams();
   const [productData, setProductData] = useState({});
@@ -23,32 +24,35 @@ const BuyPage = () => {
       value: price,
     });
 
-    if (transferSuccess === true) {
-      console.log("Done");
-      updateProduct(nftId, {
-        //user
-        id: userInfo.id,
-      });
-      setSold(true);
-    }
-  };
 
-  const onSubmit = async (address, price) => {
-    sendToken(address, price);
-  };
-  useEffect(() => {
-    async function fetchProductData() {
-      const product = await axios.get(
-        `http://localhost:1337/products/${nftId}`
-      );
-      setProductData(product.data);
-      if (product.data.boughtby) {
-        setSold(true);
-      }
-    }
-    fetchProductData();
-    document.body.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [nftId]);
+		if (transferSuccess === true) {
+			console.log("Done");
+			updateProduct(nftId, {
+				//user
+				id: userInfo.id,
+			});
+			setSold(true);
+		}
+	};
+
+	const onSubmit = async (address, price) => {
+		sendToken(address, price);
+	};
+	useEffect(() => {
+		async function fetchProductData() {
+			const product = await axios.get(
+				`http://localhost:1337/products/${nftId}`,
+			);
+			setProductData(product.data);
+			if (product.data.boughtby) {
+				setSold(true);
+			}
+		}
+		setSold(false);
+		fetchProductData();
+		document.body.scrollIntoView({ behavior: "smooth", block: "start" });
+	}, [nftId]);
+
 
   async function updateProduct(id, data) {
     try {
@@ -63,27 +67,28 @@ const BuyPage = () => {
   }
   const creatorId = productData?.createby?.id;
 
-  useEffect(() => {
-    if (!creatorId) return;
-    async function fetchCreatorData() {
-      const creator = await axios.get(
-        `http://localhost:1337/creators/${creatorId}`
-      );
-      let result = [];
-      creator.data.create.forEach((item) => {
-        if (item.id !== parseInt(nftId)) {
-          result.push(item);
-        }
-      });
-      setListProductData(result);
-    }
-    fetchCreatorData();
-    if (creatorId === userInfo.id) setCheckUser(true);
-  }, [creatorId, nftId, userInfo.id]);
 
-  useEffect(() => {
-    document.title = "Buy Page";
-  }, []);
+	useEffect(() => {
+		if (!creatorId) return;
+		async function fetchCreatorData() {
+			const creator = await axios.get(
+				`http://localhost:1337/creators/${creatorId}`,
+			);
+			let result = [];
+			creator.data.create.forEach((item) => {
+				if (item.id !== parseInt(nftId)) {
+					result.push(item);
+				}
+			});
+			setListProductData(result);
+		}
+		fetchCreatorData();
+		if (creatorId === userInfo.id) setCheckUser(true);
+	}, [creatorId, nftId, userInfo.id]);
+
+	useEffect(() => {
+		document.title = "Buy Page";
+	}, []);
 
   return (
     <div className="container ">
@@ -158,6 +163,7 @@ const BuyPage = () => {
       </div>
     </div>
   );
+
 };
 
 export default BuyPage;

@@ -6,6 +6,7 @@ import { Heading } from "components/heading";
 import { Pagination } from "components/pagination";
 import { useTranslation } from "react-i18next";
 const Collection = () => {
+
   const { t } = useTranslation();
   const [productList, setProductList] = useState([]);
   const { userInfo } = useAuth();
@@ -72,6 +73,7 @@ const Collection = () => {
       </div>
     </div>
   );
+
 };
 
 export default Collection;
