@@ -15,7 +15,8 @@ const DarkMode = () => {
 	if (theme === lightTheme || theme === darkTheme) {
 		body.classList.add(theme);
 	} else {
-		body.classList.add(lightTheme);
+		body.classList.add(darkTheme);
+		localStorage.setItem("theme", "dark");
 	}
 
 	const switchTheme = (e) => {
@@ -34,7 +35,7 @@ const DarkMode = () => {
 
 	return (
 		<div
-			className={theme === "dark" ? clickedClass : ""}
+			className={`p-3 ${theme === "dark" ? clickedClass : ""}`}
 			id="darkMode"
 			onClick={(e) => switchTheme(e)}
 		>
