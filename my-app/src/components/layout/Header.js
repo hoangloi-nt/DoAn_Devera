@@ -147,7 +147,9 @@ const Header = () => {
 							ref={nodeRef}
 						>
 							{hashShortener(address)}
-							<div className="font-medium text-white">{price} ICX</div>
+							<div className="font-medium text-white">
+								{parseFloat(price).toFixed(4)} ICX
+							</div>
 							{show && (
 								<div className="absolute flex justify-center items-start flex-col bg-white w-[200px] rounded-lg overflow-hidden translate-y-2 z-10">
 									<span
