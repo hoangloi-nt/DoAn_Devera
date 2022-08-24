@@ -35,7 +35,12 @@ const HomePage = () => {
             <br></br> {t("homepage.title2")}
           </div>
           <div className="mt-4 mb-10 text-base">{t("homepage.desc")}</div>
-          <Button kind="primary" height={"56px"} width={"300px"}>
+          <Button
+            kind="primary"
+            height={"56px"}
+            width={"300px"}
+            to={"/marketplace"}
+          >
             {t("homepage.mainBtn")}
           </Button>
           <div className="flex items-center gap-x-48 mt-10">
