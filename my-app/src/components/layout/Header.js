@@ -3,10 +3,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "../button";
 import { DarkMode } from "../DarkMode";
 import {
-	connectWallet,
-	hashShortener,
-	disConnect,
-	getBalance,
+  connectWallet,
+  hashShortener,
+  disConnect,
+  getBalance,
 } from "../../sdk/iconSDK.js";
 import useClickOutSide from "../../hooks/useClickOutSide";
 import { useEffect } from "react";
@@ -17,45 +17,24 @@ import { useTranslation } from "react-i18next";
 import Search from "./search/Search";
 
 const Header = () => {
-	const { t, i18n } = useTranslation();
-	const [address, setAddress] = useState(localStorage.getItem("address"));
-	const { show, setShow, nodeRef } = useClickOutSide();
-	const [price, setPrice] = useState("");
-	const navigate = useNavigate();
 
-	const { userInfo } = useAuth();
-	document.body.classList.add(localStorage.getItem("theme"));
-	useEffect(() => {
-		async function getPrice() {
-			const price = await getBalance(address);
-			setPrice(price);
-		}
-		getPrice();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+  const { t, i18n } = useTranslation();
+  const [address, setAddress] = useState(localStorage.getItem("address"));
+  const { show, setShow, nodeRef } = useClickOutSide();
+  const [price, setPrice] = useState("");
+  const navigate = useNavigate();
 
-	const disConnectHandle = () => {
-		Swal.fire({
-			title: "Do you want to disconnect?",
-			icon: "warning",
-			showCancelButton: true,
-			confirmButtonColor: "#3085d6",
-			cancelButtonColor: "#d33",
-			confirmButtonText: "Yes, disconnect!",
-		}).then((result) => {
-			if (result.isConfirmed) {
-				disConnect(setAddress);
-				navigate("/");
-				Swal.fire(
-					"Disconnect!",
-					"You have successfully disconnected!",
-					"success",
-				);
-			}
-		});
-	};
+  const { userInfo } = useAuth();
+  document.body.classList.add(localStorage.getItem("theme"));
+  useEffect(() => {
+    async function getPrice() {
+      const price = await getBalance(address);
+      setPrice(price);
+    }
+    getPrice();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-	// let language = JSON.parse(localStorage.getItem("language")) || [];
 
 	const handleChangeLanguage = async () => {
 		const inputOptions = new Promise((resolve) => {
@@ -190,6 +169,7 @@ const Header = () => {
 			</div>
 		</header>
 	);
+
 };
 
 export default Header;
