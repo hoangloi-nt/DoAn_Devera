@@ -28,4 +28,17 @@ body.light {
 		background-color: #30384d;
 		color: #fff;
 	}
+	& .header-search {
+		background-color: #8599cd;
+		border-color: #000;
+	}
+	& .header-search input::placeholder {
+		color: #000;
+	}
+	& .address-user {
+		color: black;
+	}
+	& .result-search-wrapper {
+		background-color: #aeb9d5;
+	}
 }

@@ -12,12 +12,14 @@ const DarkMode = () => {
     theme = localStorage.getItem("theme");
   }
 
-  if (theme === lightTheme || theme === darkTheme) {
-    body.classList.add(theme);
-  } else {
-    body.classList.add(darkTheme);
-    localStorage.setItem("theme", "dark");
-  }
+
+	if (theme === lightTheme || theme === darkTheme) {
+		body.classList.add(theme);
+	} else {
+		body.classList.add(darkTheme);
+		localStorage.setItem("theme", "dark");
+	}
+
 
   const switchTheme = (e) => {
     if (theme === darkTheme) {
@@ -33,15 +35,17 @@ const DarkMode = () => {
     }
   };
 
-  return (
-    <div
-      className={theme === "dark" ? clickedClass : ""}
-      id="darkMode"
-      onClick={(e) => switchTheme(e)}
-    >
-      {theme === lightTheme ? "Dark" : "Light"} mode
-    </div>
-  );
+
+	return (
+		<div
+			className={`p-3 ${theme === "dark" ? clickedClass : ""}`}
+			id="darkMode"
+			onClick={(e) => switchTheme(e)}
+		>
+			{theme === lightTheme ? "Dark" : "Light"} mode
+		</div>
+	);
+
 };
 
 export default DarkMode;
