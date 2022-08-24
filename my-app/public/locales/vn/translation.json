@@ -1,110 +1,112 @@
 {
-  "explore": "Khám phá",
-  "changeName": "Đổi ngôn ngữ",
-  "darkMode": "Chế độ sáng/tối",
-  "createNFT": "Tạo NFT",
-  "profile": "Hồ sơ",
-  "disconnect": "Ngắt kết nối",
-  "connect": "Kết nối",
-  "marketplace": "Thị trường",
-  "artist": "Họa sĩ",
-  "collection": "Bộ sưu tập",
-  "search": "Tìm kiếm...",
+	"explore": "Khám phá",
+	"changeName": "Đổi ngôn ngữ",
+	"darkMode": "Chế độ sáng/tối",
+	"createNFT": "Tạo NFT",
+	"profile": "Hồ sơ",
+	"disconnect": "Ngắt kết nối",
+	"connect": "Kết nối",
+	"marketplace": "Thị trường",
+	"artist": "Họa sĩ",
+	"collection": "Bộ sưu tập",
+	"search": "Tìm kiếm...",
 
-  "disconnect-modal": {
-    "titleDisconnect": "Bạn có muốn ngắt kết nối không?",
-    "yesDisconnect": "Có, ngắt kết nối!",
-    "noDisconnect": "Hủy",
-    "disconnect": "Đã ngắt kết nối!",
-    "textConfirm": "Bạn đã ngắt kết nối thành công!"
-  },
+	"disconnect-modal": {
+		"titleDisconnect": "Bạn có muốn ngắt kết nối không?",
+		"yesDisconnect": "Có, ngắt kết nối!",
+		"noDisconnect": "Hủy",
+		"disconnect": "Đã ngắt kết nối!",
+		"textConfirm": "Bạn đã ngắt kết nối thành công!"
+	},
 
-  "homepage": {
-    "title1": "Khám phá, mua bán",
-    "title2": "& thu thập các NFT quý hiếm!",
-    "desc": "Thị trường kỹ thuật số để sưu tập tiền điện tử và các token không thể thay thế (NFT)",
-    "mainBtn": "Khám phá ngay",
-    "artist": "Họa sĩ",
-    "hot": "Siêu Hot"
-  },
+	"homepage": {
+		"title1": "Khám phá, mua bán",
+		"title2": "& thu thập các NFT quý hiếm!",
+		"desc": "Thị trường kỹ thuật số để sưu tập tiền điện tử và các token không thể thay thế (NFT)",
+		"mainBtn": "Khám phá ngay",
+		"artist": "Họa sĩ",
+		"hot": "Siêu Hot"
+	},
 
-  "footer": {
-    "collectibles": "Sưu tầm",
-    "vr": "Thực tế ảo",
-    "resources": "Tài nguyên",
-    "help": "Trung tập trợ giúp",
-    "partners": "Đối tác",
-    "blog": "Blog",
-    "newsletter": "Bản tin",
-    "company": "Công ty",
-    "about": "Về chúng tôi",
-    "careers": "Việc làm",
-    "support": "Hỗ trợ",
-    "footer-text1": "Thị trường NFTs tuyệt vời, sáng tạo kỹ thuật số đích thực và độc đáo.",
-    "footer-text2": "Bản quyền thuộc về Devera 2022. Cấm sao chép dưới mọi hình thức.",
-    "footer-text3": "Chính sách bảo mật",
-    "footer-text4": "Điều khoản và điều kiện"
-  },
+	"footer": {
+		"collectibles": "Sưu tầm",
+		"vr": "Thực tế ảo",
+		"resources": "Tài nguyên",
+		"help": "Trung tập trợ giúp",
+		"partners": "Đối tác",
+		"blog": "Blog",
+		"newsletter": "Bản tin",
+		"company": "Công ty",
+		"about": "Về chúng tôi",
+		"careers": "Việc làm",
+		"support": "Hỗ trợ",
+		"footer-text1": "Thị trường NFTs tuyệt vời, sáng tạo kỹ thuật số đích thực và độc đáo.",
+		"footer-text2": "Bản quyền thuộc về Devera 2022. Cấm sao chép dưới mọi hình thức.",
+		"footer-text3": "Chính sách bảo mật",
+		"footer-text4": "Điều khoản và điều kiện"
+	},
 
-  "marketplacePage": {
-    "text1": "Bạn có thể tham quan và mua các sản phẩm ở đây."
-  },
+	"marketplacePage": {
+		"text1": "Bạn có thể tham quan và mua các sản phẩm ở đây."
+	},
 
-  "artistPage": {
-    "text1": "Xem thông tin các họa sĩ.",
-    "you": "Bạn",
-    "updateBtn": "Cập nhật thông tin",
-    "viewBtn": "Xem sản phẩm"
-  },
+	"artistPage": {
+		"text1": "Xem thông tin các họa sĩ.",
+		"you": "Bạn",
+		"updateBtn": "Cập nhật thông tin",
+		"viewBtn": "Xem sản phẩm"
+	},
 
-  "name": "Tên",
-  "address": "Địa chỉ",
-  "products": "SL sản phẩm",
-  "created": "Được tạo bởi",
-  "wallet": "Ví tiền",
-  "upload": "Tải hình lên",
-  "img-text1": "Tải lên tác phẩm của bạn,",
-  "img-text2": "tùy chỉnh NFT với các thuộc tính, số liệu ",
-  "img-text3": "kế bên để có thể mở khóa sản phẩm",
-  "img-avatar": "Chọn hình đại diện mới.",
+	"name": "Tên",
+	"address": "Địa chỉ",
+	"products": "SL sản phẩm",
+	"created": "Được tạo bởi",
+	"wallet": "Ví tiền",
+	"upload": "Tải hình lên",
+	"img-text1": "Tải lên tác phẩm của bạn,",
+	"img-text2": "tùy chỉnh NFT với các thuộc tính, số liệu ",
+	"img-text3": "kế bên để có thể mở khóa sản phẩm",
+	"img-avatar": "Chọn hình đại diện mới.",
 
-  "collectionPage": {
-    "title": "Bộ sưu tập của bạn",
-    "created": "Sản phẩm đã tạo",
-    "buy": "Sản phẩm đã mua",
-    "text1": "Bạn chưa tạo bất cứ sản phẩm nào",
-    "text2": "Bạn chưa mua bất cứ sản phẩm nào"
-  },
+	"collectionPage": {
+		"title": "Bộ sưu tập của bạn",
+		"created": "Sản phẩm đã tạo",
+		"buy": "Sản phẩm đã mua",
+		"text1": "Bạn chưa tạo bất cứ sản phẩm nào",
+		"text2": "Bạn chưa mua bất cứ sản phẩm nào"
+	},
 
-  "buyPage": {
-    "title": "Mua ngay!",
-    "desc": "Nhanh lên, bạn sẽ bị trễ mất!",
-    "updateBtn": "Cập nhật sản phẩm",
-    "noBuy": "Đây là sản phẩm của bạn, không thể mua!",
-    "soldOut": "Bán hết",
-    "buy": "Mua",
-    "more": "Xem nhiều hơn từ họa sĩ này",
-    "viewAll": "Xem tất cả...",
-    "succes": "Mua thành công",
-    "fail": "Mua thất bại!"
-  },
+	"buyPage": {
+		"buyTitle": "Mua ngay!",
+		"soldTitle": "Đã bán!",
+		"ownTitle": "Đây là sản phẩm của bạn!",
+		"desc": "Nhanh lên, bạn sẽ bị trễ mất!",
+		"updateBtn": "Cập nhật sản phẩm",
+		"noBuy": "Đây là sản phẩm của bạn, không thể mua!",
+		"soldOut": "Bán hết",
+		"buy": "Mua",
+		"more": "Xem nhiều hơn từ họa sĩ này",
+		"viewAll": "Xem tất cả...",
+		"succes": "Mua thành công",
+		"fail": "Mua thất bại!"
+	},
 
-  "createPage": {
-    "title": "Tạo NFT",
-    "price": "Giá",
-    "category": "Danh mục",
-    "createBtn": "Tạo",
-    "tax1": "Phí tạo sản phẩm (2%)",
-    "tax2": "Phí tạo sản phẩm bạn cần trả là",
-    "succes": "Tạo NFT thành công!",
-    "time1": "Đang tải ảnh!",
-    "time2": "Cửa sổ này sẽ đóng vào"
-  },
+	"createPage": {
+		"title": "Tạo NFT",
+		"price": "Giá",
+		"category": "Danh mục",
+		"createBtn": "Tạo",
+		"tax1": "Phí tạo sản phẩm (2%)",
+		"tax2": "Phí tạo sản phẩm bạn cần trả là",
+		"succes": "Tạo NFT thành công!",
+		"time1": "Đang tải ảnh!",
+		"time2": "Cửa sổ này sẽ đóng vào"
+	},
 
-  "topCreators": {
-    "title": "Top họa sĩ của tuần",
-    "watch": "Xem Video"
-  },
+	"topCreators": {
+		"title": "Top họa sĩ của tuần",
+		"watch": "Xem Video"
+	},
 
-  "productSearch": "Sản phẩm"
+	"productSearch": "Sản phẩm"
 }
