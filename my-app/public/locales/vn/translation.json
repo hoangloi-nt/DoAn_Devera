@@ -77,7 +77,9 @@
   },
 
   "buyPage": {
-    "title": "Mua ngay!",
+    "buyTitle": "Mua ngay!",
+    "soldTitle": "Đã bán!",
+    "ownTitle": "Đây là sản phẩm của bạn!",
     "desc": "Nhanh lên, bạn sẽ bị trễ mất!",
     "updateBtn": "Cập nhật sản phẩm",
     "noBuy": "Đây là sản phẩm của bạn, không thể mua!",
@@ -98,7 +100,10 @@
     "tax2": "Phí tạo sản phẩm bạn cần trả là",
     "succes": "Tạo NFT thành công!",
     "time1": "Đang tải ảnh!",
-    "time2": "Cửa sổ này sẽ đóng vào"
+    "time2": "Cửa sổ này sẽ đóng vào",
+    "input1": "Nhập tên NFT",
+    "input2": "Nhập giá ICX",
+    "input3": "Nhập danh mục"
   },
 
   "topCreators": {

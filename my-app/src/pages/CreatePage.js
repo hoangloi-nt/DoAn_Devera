@@ -158,7 +158,7 @@ const CreatePage = () => {
                 id="name"
                 name="name"
                 control={control}
-                placeholder="Enter a name of NFT"
+                placeholder={t("createPage.input1")}
                 className="mt-2"
                 required
               ></Input>
@@ -169,7 +169,7 @@ const CreatePage = () => {
                 id="price"
                 name="price"
                 control={control}
-                placeholder="Enter a price in ICX"
+                placeholder={t("createPage.input2")}
                 className="mt-2"
                 type="number"
                 required
@@ -181,7 +181,7 @@ const CreatePage = () => {
                 id="category"
                 name="category"
                 control={control}
-                placeholder="Enter your category"
+                placeholder={t("createPage.input3")}
                 className="mt-2"
                 required
               ></Input>

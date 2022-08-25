@@ -34,6 +34,9 @@
     },
     "views": {
       "type": "biginteger"
+    },
+    "txHash": {
+      "type": "text"
     }
   }
 }

@@ -158,6 +158,7 @@ const Search = () => {
       </HeadlessTippy>
     </div>
   );
+
 };
 
 export default Search;

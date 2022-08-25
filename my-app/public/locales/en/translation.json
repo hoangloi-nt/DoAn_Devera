@@ -77,7 +77,9 @@
   },
 
   "buyPage": {
-    "title": "Buy now!",
+    "buyTitle": "Buy now!",
+    "soldTitle": "Sold out!",
+    "ownTitle": "This is your product!",
     "desc": "Hurry up, you will be late!",
     "updateBtn": "Update product",
     "noBuy": "This is your product, you can't buy it!",
@@ -98,7 +100,10 @@
     "tax2": "Your fee to create this product is",
     "succes": "Create NFT successfully!",
     "time1": "Upload image!",
-    "time2": "I will close in"
+    "time2": "I will close in",
+    "input1": "Enter a name of NFT",
+    "input2": "Enter a price in ICX",
+    "input3": "Enter your category"
   },
 
   "topCreators": {
