@@ -113,6 +113,7 @@ const BuyPage = () => {
 					TxHash,
 				);
 				Swal.fire({
+					// title: "<h5>Your transaction was submitted successfully</h5>",
 					icon: "success",
 					html: `
 						<div style="font-size: 22px;font-weight: 600;">Your transaction was submitted successfully</div>
@@ -130,13 +131,7 @@ const BuyPage = () => {
 			}, 3000);
 		} else {
 			setModal(false);
-			Swal.fire({
-				icon: "error",
-				html: `<div style="font-size: 22px;font-weight: 600;">Your transaction was canceled</div>`,
-				showCloseButton: true,
-				focusConfirm: false,
-				width: "600px",
-			});
+			Swal.fire("Payment has been canceled!", "", "error");
 		}
 	};
 	const cancelSubmit = () => {

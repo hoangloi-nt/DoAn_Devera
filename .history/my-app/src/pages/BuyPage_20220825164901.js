@@ -132,7 +132,7 @@ const BuyPage = () => {
 			setModal(false);
 			Swal.fire({
 				icon: "error",
-				html: `<div style="font-size: 22px;font-weight: 600;">Your transaction was canceled</div>`,
+				html: `<div style="font-size: 22px;font-weight: 600;">Your transaction was submitted successfully</div>`,
 				showCloseButton: true,
 				focusConfirm: false,
 				width: "600px",

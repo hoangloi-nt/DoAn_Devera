@@ -113,13 +113,17 @@ const BuyPage = () => {
 					TxHash,
 				);
 				Swal.fire({
+					// title: "<h5>Your transaction was submitted successfully</h5>",
 					icon: "success",
 					html: `
 						<div style="font-size: 22px;font-weight: 600;">Your transaction was submitted successfully</div>
 						<a style="margin-top: 15px; font-weight: 600; color: #2ca3cc; display: flex; justify-content: center;" target="_blank" 
 						href="https://sejong.tracker.solidwallet.io/transaction/${
 							txHash || productData?.txHash
-						}">View history at <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" /></svg></a>`,
+						}">View history at <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+</svg>
+</a>`,
 					showCloseButton: true,
 					focusConfirm: false,
 					width: "600px",
@@ -130,13 +134,7 @@ const BuyPage = () => {
 			}, 3000);
 		} else {
 			setModal(false);
-			Swal.fire({
-				icon: "error",
-				html: `<div style="font-size: 22px;font-weight: 600;">Your transaction was canceled</div>`,
-				showCloseButton: true,
-				focusConfirm: false,
-				width: "600px",
-			});
+			Swal.fire("Payment has been canceled!", "", "error");
 		}
 	};
 	const cancelSubmit = () => {
