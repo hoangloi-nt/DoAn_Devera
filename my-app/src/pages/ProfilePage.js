@@ -152,7 +152,7 @@ const ProfilePage = () => {
                 id="wallet"
                 name="wallet"
                 control={control}
-                className="mt-2"
+                className="mt-2 text-gray-400"
                 disabled
               ></Input>
             </div>
@@ -163,7 +163,7 @@ const ProfilePage = () => {
                   id="address"
                   name="address"
                   control={control}
-                  className=""
+                  className="text-gray-400"
                   disabled
                 ></Input>
                 <Button
