@@ -13,6 +13,7 @@ import { useRef } from "react";
 import styled from "styled-components";
 import Swal from "sweetalert2";
 const BuyPage = () => {
+
 	const BuyPageStyled = styled.div`
 		.modal-wrapper {
 			background-color: rgba(0, 0, 0, 0.9);
@@ -81,8 +82,12 @@ const BuyPage = () => {
 	const { userInfo } = useAuth();
 	const [checkUser, setCheckUser] = useState(false);
 	const [modal, setModal] = useState(false);
+  const [checkBuyUser, setCheckBuyUser] = useState(false);
+  const [txHash, setTxHash] = useState("");
+  let TxHash = "";
 
-	const sendToken = async (address, price, { signal } = {}) => {
+
+	const sendToken = async (address, price) => {
 		setModal(true);
 		let transferSuccess = await transfer({
 			to: address,
@@ -90,12 +95,17 @@ const BuyPage = () => {
 		});
 
 		if (transferSuccess === true) {
-			console.log("Done");
-			updateProduct(nftId, {
-				//user
-				id: userInfo.id,
-			});
+			      TxHash = `${transferSuccess}`;
+      updateProduct(
+        nftId,
+        {
+          //user
+          id: userInfo.id,
+        },
+        TxHash
+      );
 			Swal.fire("Payment success!", "", "success");
+      setTxHash(TxHash);
 			setSold(true);
 		} else {
 			Swal.fire("Payment has been canceled!", "", "error");
@@ -117,40 +127,47 @@ const BuyPage = () => {
 			if (product.data.boughtby) {
 				setSold(true);
 			}
+      if (product.data.boughtby?.id === userInfo.id) {
+        setCheckBuyUser(true);
+      }
 		}
 		setSold(false);
 		fetchProductData();
 		document.body.scrollIntoView({ behavior: "smooth", block: "start" });
-	}, [nftId]);
+	}, [nftId, userInfo.id]);
 
-	async function updateProduct(id, data) {
-		try {
-			await axios.put(`http://localhost:1337/products/${id}`, {
-				boughtby: data,
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	}
-	const creatorId = productData?.createby?.id;
+    async function updateProduct(id, data, TxHash) {
+    try {
+      const response = await axios.put(`http://localhost:1337/products/${id}`, {
+        boughtby: data,
+        txHash: TxHash,
+      });
+      console.log("buy:", response);
+      toast.success(t("buyPage.succes"));
+    } catch (error) {
+      console.log(error);
+      toast.error(t("buyPage.fail"), error.message);
+    }
+  }
+  const creatorId = productData?.createby?.id;
 
-	useEffect(() => {
-		if (!creatorId) return;
-		async function fetchCreatorData() {
-			const creator = await axios.get(
-				`http://localhost:1337/creators/${creatorId}`,
-			);
-			let result = [];
-			creator.data.create.forEach((item) => {
-				if (item.id !== parseInt(nftId)) {
-					result.push(item);
-				}
-			});
-			setListProductData(result);
-		}
-		fetchCreatorData();
-		if (creatorId === userInfo.id) setCheckUser(true);
-	}, [creatorId, nftId, userInfo.id]);
+  useEffect(() => {
+    if (!creatorId) return;
+    async function fetchCreatorData() {
+      const creator = await axios.get(
+        `http://localhost:1337/creators/${creatorId}`
+      );
+      let result = [];
+      creator.data.create.forEach((item) => {
+        if (item.id !== parseInt(nftId)) {
+          result.push(item);
+        }
+      });
+      setListProductData(result);
+    }
+    fetchCreatorData();
+    if (creatorId === userInfo.id) setCheckUser(true);
+  }, [creatorId, nftId, userInfo.id]);
 
 	useEffect(() => {
 		document.title = "Buy Page";
@@ -172,54 +189,71 @@ const BuyPage = () => {
 			)}
 
 			<div className="container ">
-				<div className="flex flex-col items-center justify-center mt-3">
-					{sold ? (
-						<div className="mb-4 heading-text">{t("buyPage.soldTitle")}</div>
-					) : checkUser ? (
-						<div className="mb-4 heading-text">{t("buyPage.ownTitle")}</div>
-					) : (
-						<div className="mb-4 heading-text">{t("buyPage.buyTitle")}</div>
-					)}
+      <div className="flex flex-col items-center justify-center mt-3">
+        {sold ? (
+          <div className="mb-4 heading-text">{t("buyPage.soldTitle")}</div>
+        ) : checkUser ? (
+          <div className="mb-4 heading-text">{t("buyPage.ownTitle")}</div>
+        ) : (
+          <div className="mb-4 heading-text">{t("buyPage.buyTitle")}</div>
+        )}
 
-					<Card
-						to={"#"}
-						image={productData?.image}
-						title={productData?.Name}
-						address={productData?.createby?.address}
-						price={productData?.Price}
-						avatar={productData?.createby?.avatar}
-					></Card>
-					{sold
-						? !checkUser && <div className="my-6"></div>
-						: !checkUser && (
-								<>
-									<div className="my-6 message-text">{t("buyPage.desc")}</div>
-									<Button
-										kind="primary"
-										width={"183px"}
-										onClick={() =>
-											onSubmit(
-												productData.createby.address,
-												Number(productData.Price),
-											)
-										}
-									>
-										{t("buyPage.buy")}
-									</Button>
-								</>
-						  )}
-					{checkUser && (
-						<div className="flex flex-col items-center justify-center gap-3 my-6">
-							<Button
-								type="button"
-								kind="primary"
-								to={`/update/${productData.id}`}
-							>
-								{t("buyPage.updateBtn")}
-							</Button>
-						</div>
-					)}
-				</div>
+        <Card
+          to={"#"}
+          image={productData?.image}
+          title={productData?.Name}
+          address={productData?.createby?.address}
+          price={productData?.Price}
+          avatar={productData?.createby?.avatar}
+        ></Card>
+        {sold
+          ? !checkUser && <div className="my-6"></div>
+          : !checkUser && (
+              <>
+                <div className="my-6 message-text">{t("buyPage.desc")}</div>
+                <Button
+                  kind="primary"
+                  width={"183px"}
+                  onClick={() =>
+                    onSubmit(
+                      productData.createby.address,
+                      Number(productData.Price)
+                    )
+                  }
+                >
+                  {t("buyPage.buy")}
+                </Button>
+              </>
+            )}
+        {sold && checkBuyUser && (
+          <div className="my-6 message-text">
+            <a
+              href={`https://sejong.tracker.solidwallet.io/transaction/${
+                txHash || productData?.txHash
+              }`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              TxHash:{" "}
+              {txHash?.slice(0, 25) ||
+                productData?.txHash?.slice(0, 25) ||
+                TxHash?.slice(0, 25)}
+              ...
+            </a>
+          </div>
+        )}
+        {checkUser && (
+          <div className="flex flex-col items-center justify-center gap-3 my-6">
+            <Button
+              type="button"
+              kind="primary"
+              to={`/update/${productData.id}`}
+            >
+              {t("buyPage.updateBtn")}
+            </Button>
+          </div>
+        )}
+      </div>
 				<div className="flex flex-col justify-center my-4">
 					<div className="mb-6 text-left heading-text">{t("buyPage.more")}</div>
 					<div className="grid grid-cols-4 gap-10 mx-auto">

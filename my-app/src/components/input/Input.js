@@ -38,9 +38,9 @@ const Input = ({
     <InputStyles
       name={name}
       type={type}
+      className={`${className}`}
       {...field}
       {...props}
-      className={`${className}`}
     ></InputStyles>
   );
 };
