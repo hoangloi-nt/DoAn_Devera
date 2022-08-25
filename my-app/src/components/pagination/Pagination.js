@@ -46,6 +46,47 @@ export default function Pagination(props) {
     return <Product />;
   }
 
+  // const { items, totalProducts, className = "", amount } = props;
+  // const [pageCount, setPageCount] = useState(0);
+  // const [itemOffset, setItemOffset] = useState(0);
+  // const itemsPerPage = amount;
+
+  //  useEffect(() => {
+  //    setPageCount(Math.ceil(totalProducts / itemsPerPage));
+  //  }, [itemsPerPage, totalProducts, itemOffset]);
+
+  //  const handlePageClick = (event) => {
+  //    const newOffset = (event.selected * itemsPerPage) % totalProducts;
+  //    setItemOffset(newOffset);
+  //  };
+
+  // const Product = () => {
+  //   return (
+  //     <div
+  //       className={`grid grid-cols-4 mx-auto gap-x-10 gap-y-12 ${className}`}
+  //     >
+  //       {items.map((product) => {
+  //         return (
+  //           <Card
+  //             key={product.id}
+  //             to={`/buy/${product.id}`}
+  //             title={product?.Name}
+  //             price={product?.Price}
+  //             image={product?.image}
+  //             address={product?.createby?.address}
+  //             avatar={product?.createby?.avatar}
+  //           ></Card>
+  //         );
+  //       })}
+  //     </div>
+  //   );
+  // };
+
+  // if (items.length <= itemsPerPage) {
+  //   return <Product />;
+  // }
+
+
   return (
     <>
       <Product />

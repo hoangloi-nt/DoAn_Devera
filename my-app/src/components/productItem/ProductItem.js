@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { hashShortener } from "sdk/iconSDK";
 
 
-const ProductItem = ({ data }) => {
+const ProductItem = ({ data, onClick }) => {
     return (
       <Link
         to={`/buy/${data.id}`}
         className="flex flex-row items-center px-4 py-2 hover:bg-secondary"
+        onClick={onClick}
       >
         <img
           className="w-10 h-10 rounded-sm object-cover"

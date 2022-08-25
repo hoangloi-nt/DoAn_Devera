@@ -15,7 +15,8 @@ const DarkMode = () => {
 	if (theme === lightTheme || theme === darkTheme) {
 		body.classList.add(theme);
 	} else {
-		body.classList.add(lightTheme);
+		body.classList.add(darkTheme);
+		localStorage.setItem("theme", "dark");
 	}
 
 	const switchTheme = (e) => {

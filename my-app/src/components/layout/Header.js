@@ -35,27 +35,6 @@ const Header = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const disConnectHandle = () => {
-		Swal.fire({
-			title: "Do you want to disconnect?",
-			icon: "warning",
-			showCancelButton: true,
-			confirmButtonColor: "#3085d6",
-			cancelButtonColor: "#d33",
-			confirmButtonText: "Yes, disconnect!",
-		}).then((result) => {
-			if (result.isConfirmed) {
-				disConnect(setAddress);
-				navigate("/");
-				Swal.fire(
-					"Disconnect!",
-					"You have successfully disconnected!",
-					"success",
-				);
-			}
-		});
-	};
-
 
   // let language = JSON.parse(localStorage.getItem("language")) || [];
   const disConnectHandle = () => {

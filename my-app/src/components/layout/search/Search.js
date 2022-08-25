@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useDebounce from "hooks/useDebounce";
 import * as request from "utils/request";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Search = () => {
   const { t } = useTranslation();
@@ -63,6 +64,11 @@ const Search = () => {
     }
   };
 
+  const handleViewMore = () => {
+      setSearchValue("");
+      handleHideResult();
+  }
+
   return (
     <div>
       <HeadlessTippy
@@ -77,9 +83,24 @@ const Search = () => {
 
               <div className="overflow-y-auto">
                 {searchResult.map((result) => (
-                  <ProductItem key={result.id} data={result} />
+                  <ProductItem
+                    key={result.id}
+                    data={result}
+                    onClick={() => {
+                      setSearchValue("");
+                      handleHideResult();
+                    }}
+                  />
                 ))}
               </div>
+
+              <Link
+                to={`/search?p=${searchValue}`}
+                className="px-3 py-1"
+                onClick={handleViewMore}
+              >
+                View more...
+              </Link>
             </PopperWrapper>
           </div>
         )}
@@ -116,20 +137,22 @@ const Search = () => {
             className="absolute cursor-pointer right-0 p-3"
             onMouseDown={(e) => e.preventDefault()}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+            <Link onClick={handleViewMore} to={`/search?p=${searchValue}`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </Link>
           </button>
         </div>
       </HeadlessTippy>

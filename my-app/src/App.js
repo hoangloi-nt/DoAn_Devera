@@ -13,6 +13,7 @@ const Collection = lazy(() => import("pages/Collection/Collection"));
 const BuyPage = lazy(() => import("pages/BuyPage"));
 const ArtistPage = lazy(() => import("pages/ArtistPage"));
 const ArtistDetailPage = lazy(() => import("pages/ArtistDetailPage"));
+const SearchPage = lazy(() => import("pages/SearchPage"));
 
 const Main = lazy(() => import("components/layout/Main"));
 
@@ -47,6 +48,10 @@ const App = () => {
               <Route
                 path="/profile"
                 element={<ProfilePage></ProfilePage>}
+              ></Route>
+              <Route
+                path={`/search`}
+                element={<SearchPage></SearchPage>}
               ></Route>
             </Route>
             <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
