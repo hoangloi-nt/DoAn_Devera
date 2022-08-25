@@ -127,9 +127,14 @@ export const signTx = async (transaction) => {
 			"ICONEX_RELAY_RESPONSE",
 			function (event) {
 				const type = event.detail.type;
+				console.log(type);
 				const payload = event.detail.payload;
 				if (type === "RESPONSE_JSON-RPC") {
 					resolve(payload);
+				}
+				if (type === "CANCEL_JSON-RPC") {
+					console.log("Cancel");
+					resolve(false);
 				}
 			},
 			{ once: true },
