@@ -18,7 +18,6 @@ const Category = () => {
   
   const [selectedCategory, setSelectedCategogy] = useState(categories[0]);
   const [productList, setProductList] = useState([]);
-  const [activePage, setActivePage] = useState(0);
 
   const [totalProducts, setTotalProducts] = useState(0);
   const [pageCount, setPageCount] = useState(0);
@@ -26,21 +25,6 @@ const Category = () => {
   const itemsPerPage = 8;
 
   useEffect(() => {
-    const countApi = async () => {
-      try {
-        const res = await request.get(`products/count`, {
-          params: {
-            _Category: selectedCategory,
-          },
-        });
-        setTotalProducts(res);
-      } catch (error) {}
-    };
-    countApi();
-  }, [selectedCategory])
-
-  useEffect(() => {
-
     const fetchApi = async () => {
       try {
         const res = await request.get(`products`, {
@@ -57,6 +41,20 @@ const Category = () => {
     fetchApi();
   }, [itemOffset, selectedCategory]);
 
+    useEffect(() => {
+      const countApi = async () => {
+        try {
+          const res = await request.get(`products/count`, {
+            params: {
+              _Category: selectedCategory,
+            },
+          });
+          setTotalProducts(res);
+        } catch (error) {}
+      };
+      countApi();
+    }, [selectedCategory]);
+
   useEffect(() => {
     setPageCount(Math.ceil(totalProducts / itemsPerPage));
   }, [totalProducts]);
@@ -64,7 +62,7 @@ const Category = () => {
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % totalProducts;
     setItemOffset(newOffset);
-  };
+  }
 
   return (
     <>
@@ -77,15 +75,15 @@ const Category = () => {
             active={selectedCategory === category}
             onClick={() => {
               setSelectedCategogy(category);
-              setActivePage(0);
+              setItemOffset(0);
             }}
           >
             {category}
           </Button>
         ))}
       </div>
-      <div className="my-5">
 
+      <div className="my-5">
         <div className={`grid grid-cols-4 mx-auto gap-x-10 gap-y-12`}>
           {productList.map((product) => {
             return (
@@ -103,6 +101,7 @@ const Category = () => {
         </div>
 
         <ReactPaginate
+          key={selectedCategory}
           breakLabel="..."
           nextLabel=">>"
           onPageChange={handlePageClick}
