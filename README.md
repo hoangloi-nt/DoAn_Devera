@@ -1,5 +1,6 @@
 # DoAn_Devera - DeveStore 🛒
-DeveStore is a website to discover, sell and collect rare NFTs.
+DeveStore is a website to discover, sell and collect rare NFTs. <br/>
+Link demo: https://www.youtube.com/watch?v=NHKIBAJGUM0
 
 ![Logo](https://user-images.githubusercontent.com/67638759/188779848-36c1378b-ae29-4383-96fa-5ff0d8d121b4.png)
 
@@ -59,6 +60,13 @@ Team size: 4 <br/>
 - Search NFT
 - Pagination
 - Incomplete: JWT token
+
+# Pictures 🖼
+![image](https://user-images.githubusercontent.com/67638759/194107046-acae4966-2a54-4499-87e9-8c3fabe8851a.png)
+![image](https://user-images.githubusercontent.com/67638759/194107226-3af6bbf5-c378-4b2c-9c9d-e9b31037e651.png)
+![image](https://user-images.githubusercontent.com/67638759/194107315-7ab311fb-7885-4f57-878d-751055bd3204.png)
+![image](https://user-images.githubusercontent.com/67638759/194107394-15f78ca5-009f-4671-942a-c3b8d721b971.png)
+
 
 
 
